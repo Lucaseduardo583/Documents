@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James 3D | Prototipagem e Serviços em Impressão 3D de Alta Precisão</title>
+  <meta name="description" content="Transformando ideias em realidade tridimensional. Prototipagem rápida, peças técnicas industriais e colecionáveis com tecnologia FDM e Resina SLA.">
+  
+  <!-- Fontes Google (Plus Jakarta Sans & Space Grotesk) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Three.js via CDN para visualização 3D interativa de alta performance -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <!-- Efeitos de iluminação de fundo (Neon Ambient Lights) -->
+  <div class="ambient-glow glow-blue"></div>
+  <div class="ambient-glow glow-orange"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo">
+        <div class="logo-icon-box">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--accent-orange)"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">JAMES<span class="text-orange">3D</span></span>
+          <span class="brand-subtitle">PRECISION PRINTING</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <ul class="nav-menu">
+        <li><a href="#servicos" class="nav-link">Serviços</a></li>
+        <li><a href="#calculadora" class="nav-link">Simulador & Orçamento</a></li>
+        <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+        <li><a href="#processo" class="nav-link">Processo</a></li>
+        <li><a href="#depoimentos" class="nav-link">Avaliações</a></li>
+        <li><a href="#contato" class="nav-link">Contato</a></li>
+      </ul>
+
+      <!-- CTA Header -->
+      <div class="nav-actions">
+        <a href="#calculadora" class="btn btn-outline-nav">Simular Peça</a>
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20impress%C3%A3o%203D%20na%20James%203D!" target="_blank" rel="noopener noreferrer" class="btn btn-primary-nav">
+          <span>Orçamento Rápido</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu Mobile Dropdown -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#servicos" class="mobile-link">Serviços</a>
+      <a href="#calculadora" class="mobile-link">Simulador de Orçamento</a>
+      <a href="#portfolio" class="mobile-link">Portfólio</a>
+      <a href="#processo" class="mobile-link">Como Funciona</a>
+      <a href="#depoimentos" class="mobile-link">Avaliações</a>
+      <a href="#contato" class="mobile-link">Contato</a>
+      <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-primary w-full text-center">Falar no WhatsApp</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span class="badge-dot"></span>
+          <span>Tecnologia Industrial FDM & SLA 8K</span>
+        </div>
+        <h1 class="hero-title">
+          Transformando ideias em realidade <span class="gradient-text">tridimensional.</span>
+        </h1>
+        <p class="hero-description">
+          Da prototipagem ágil à produção de peças técnicas de alta resistência e colecionáveis com fidelidade milimétrica. Engenharia de ponta a serviço do seu projeto.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#calculadora" class="btn btn-primary btn-glow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+            <span>Simulador de Orçamento</span>
+          </a>
+          <a href="#portfolio" class="btn btn-glass">
+            <span>Explorar Portfólio</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+
+        <!-- Indicadores de Credibilidade -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">+5.000</span>
+            <span class="stat-label">Peças Entregues</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">0.05mm</span>
+            <span class="stat-label">Precisão Dimensional</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">24h - 48h</span>
+            <span class="stat-label">Produção Express</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Área 3D Interativa Hero -->
+      <div class="hero-3d-wrapper">
+        <div class="card-glass 3d-container-box">
+          <div class="viewport-header">
+            <div class="status-indicator">
+              <span class="dot-online"></span>
+              <span class="status-text">VIEWPORT 3D EM TEMPO REAL</span>
+            </div>
+            <div class="viewport-controls">
+              <button id="toggleWireframe" class="btn-chip" title="Alternar Malha/Sólido">Wireframe</button>
+              <button id="toggleAutoRotate" class="btn-chip active" title="Pausar rotação">Girar</button>
+            </div>
+          </div>
+
+          <!-- Canvas Three.js -->
+          <div id="threejs-canvas-container" class="three-canvas"></div>
+
+          <div class="viewport-footer">
+            <span class="hint-text">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8M8 12h8"></path></svg>
+              Arraste para rotacionar • Role para zoom
+            </span>
+            <span class="spec-tag">Resina UV & Filamentos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simulador / Calculadora de Orçamento Rápido -->
+  <section class="section-padding bg-surface" id="calculadora">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-badge">INTERATIVO</div>
+        <h2 class="section-title">Calculadora de Orçamento Inteligente</h2>
+        <p class="section-subtitle">
+          Configure as especificações técnicas da sua peça e receba uma estimativa instantânea pronta para envio direto pelo WhatsApp.
+        </p>
+      </div>
+
+      <div class="calculator-grid">
+        <!-- Painel de Configurações da Peça -->
+        <div class="card-glass calc-form-card">
+          <h3 class="calc-section-title">
+            <span class="step-num">1</span>
+            Selecione as Características da Impressão
+          </h3>
+
+          <div class="form-group">
+            <label class="form-label">Material de Fabricação</label>
+            <div class="material-options-grid" id="materialSelector">
+              <div class="option-card active" data-material="pla" data-price="0.35" data-speed="1.0">
+                <div class="opt-head">
+                  <span class="opt-title">PLA Premium</span>
+                  <span class="opt-badge">Mais Popular</span>
+                </div>
+                <p class="opt-desc">Excelente acabamento estético, sustentável e custo-benefício para protótipos.</p>
+              </div>
+
+              <div class="option-card" data-material="petg" data-price="0.45" data-speed="1.1">
+                <div class="opt-head">
+                  <span class="opt-title">PETG Pro</span>
+                  <span class="opt-badge">Resistente</span>
+                </div>
+                <p class="opt-desc">Resistência mecânica, química e térmica. Ideal para peças funcionais.</p>
+              </div>
+
+              <div class="option-card" data-material="abs" data-price="0.50" data-speed="1.2">
+                <div class="opt-head">
+                  <span class="opt-title">ABS Industrial</span>
+                  <span class="opt-badge">Técnico</span>
+                </div>
+                <p class="opt-desc">Alta rigidez e resistência a impactos. Aceita acabamento com vapor químico.</p>
+              </div>
+
+              <div class="option-card" data-material="resina" data-price="0.80" data-speed="1.5">
+                <div class="opt-head">
+                  <span class="opt-title">Resina SLA 8K</span>
+                  <span class="opt-badge opt-badge-alt">Ultra Detalhe</span>
+                </div>
+                <p class="opt-desc">Sem camadas visíveis. Perfeito para miniaturas, joalheria, medicina e colecionáveis.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preenchimento (Infill) -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="infillSlider">
+                Preenchimento Interno (Infill): <span id="infillValue" class="text-orange font-bold">20%</span>
+              </label>
+              <input type="range" id="infillSlider" min="10" max="100" step="5" value="20" class="custom-slider">
+              <div class="slider-helper">
+                <span>Leve (10-20%)</span>
+                <span>Padrão (30-50%)</span>
+                <span>Sólido (80-100%)</span>
+              </div>
+            </div>
+
+            <!-- Resolução de Camada -->
+            <div class="form-group">
+              <label class="form-label" for="layerHeightSelect">Altura de Camada (Resolução)</label>
+              <select id="layerHeightSelect" class="form-select">
+                <option value="0.28">0.28 mm — Rápida / Rascunho</option>
+                <option value="0.20" selected>0.20 mm — Padrão Equilibrado</option>
+                <option value="0.12">0.12 mm — Alta Definição (FDM)</option>
+                <option value="0.05">0.05 mm — Micron SLA (Ultra Definição)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Estimativa de Peso / Quantidade -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="weightInput">Peso Estimado da Peça (Gramas)</label>
+              <div class="input-addon-wrapper">
+                <input type="number" id="weightInput" min="10" max="3000" value="85" class="form-input">
+                <span class="input-addon">gramas</span>
+              </div>
+              <small class="form-hint">Não sabe o peso? Usamos 85g como média inicial de protótipo.</small>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="quantityInput">Quantidade de Peças</label>
+              <div class="quantity-picker">
+                <button type="button" class="qty-btn" id="qtyMinus">-</button>
+                <input type="number" id="quantityInput" min="1" max="500" value="1" class="qty-input">
+                <button type="button" class="qty-btn" id="qtyPlus">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upload Drag and Drop de STL/OBJ -->
+          <div class="form-group">
+            <label class="form-label">Envio do Arquivo 3D (.STL, .OBJ, .STEP)</label>
+            <div class="dropzone" id="fileDropZone">
+              <input type="file" id="fileInput" accept=".stl,.obj,.step,.3mf" class="dropzone-file-input">
+              <div class="dropzone-content" id="dropzoneContent">
+                <div class="dropzone-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                </div>
+                <div class="dropzone-text">
+                  <span class="primary-text">Arraste seu arquivo 3D aqui ou <strong class="text-orange">clique para selecionar</strong></span>
+                  <span class="secondary-text">Suporta .STL, .OBJ, .STEP, .3MF (Até 50MB)</span>
+                </div>
+              </div>
+
+              <!-- Exibição de arquivo carregado -->
+              <div class="file-uploaded-info" id="fileUploadedBox" style="display: none;">
+                <div class="file-meta">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  <div>
+                    <span id="fileName" class="font-bold">modelo_3d.stl</span>
+                    <span id="fileSize" class="text-muted block text-xs">2.4 MB</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-remove-file" id="removeFileBtn" title="Remover arquivo">&times;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Painel de Resumo e Estimativa -->
+        <div class="card-glass calc-summary-card">
+          <div class="summary-header">
+            <h3>Resumo da Simulação</h3>
+            <span class="status-live">Estimativa Prévia</span>
+          </div>
+
+          <div class="summary-details">
+            <div class="summary-row">
+              <span class="row-label">Material Selecionado:</span>
+              <span class="row-val" id="summaryMaterial">PLA Premium</span>
+            </div>
+            <div class="summary-row">
+              <span class="row-label">Preenchimento Interno:</span>
+              <span class="row-val" id="summaryInfill">20%</span>
+            </div>
+            <div class="summary-row">
+              <span class="row-label">Resolução Camada:</span>
+              <span class="row-val" id="summaryLayer">0.20 mm</span>
+            </div>
+            <div class="summary-row">
+              <span class="row-label">Massa Estimada:</span>
+              <span class="row-val" id="summaryWeight">85 g</span>
+            </div>
+            <div class="summary-row">
+              <span class="row-label">Unidades:</span>
+              <span class="row-val" id="summaryQty">1 un</span>
+            </div>
+            <div class="summary-row">
+              <span class="row-label">Arquivo Anexo:</span>
+              <span class="row-val text-orange" id="summaryFile">Nenhum enviado</span>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <!-- Valores Calculados -->
+          <div class="price-box">
+            <div class="price-label">Valor Estimado:</div>
+            <div class="price-value" id="totalEstimatePrice">R$ 48,00</div>
+            <div class="time-estimate">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Tempo estimado de impressão: <strong id="totalEstimateTime">4h 30m</strong>
+            </div>
+          </div>
+
+          <p class="summary-disclaimer">
+            * O valor exato e tempo final são validados após fatiamento em nosso software de engenharia.
+          </p>
+
+          <!-- Ação WhatsApp Dinâmica -->
+          <button id="sendToWhatsAppBtn" class="btn btn-whatsapp w-full">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>Enviar Pedido para Análise via WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Serviços -->
+  <section class="section-padding" id="servicos">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-badge">SOLUÇÕES COMPLETAS</div>
+        <h2 class="section-title">O que produzimos com maestria</h2>
+        <p class="section-subtitle">
+          Atendemos indústrias, engenheiros, designers de produto, arquitetos e entusiastas com acabamentos de nível profissional.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Serviço 1 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">Prototipagem Rápida</h3>
+          <p class="service-desc">
+            Validação de conceito física em menos de 48 horas. Reduza o tempo de lançamento do seu produto e teste ergonomia, encaixes e forma antes do ferramental.
+          </p>
+          <ul class="service-tags">
+            <li>Iteração Veloz</li>
+            <li>FDM & SLA</li>
+            <li>Redução de Custos</li>
+          </ul>
+        </div>
+
+        <!-- Serviço 2 -->
+        <div class="service-card highlight-card">
+          <div class="service-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Peças Técnicas & Reposição</h3>
+          <p class="service-desc">
+            Substituição de peças plásticas descontinuadas, engrenagens com fibra de carbono, gabaritos de montagem (jigs) e suportes sob medida para linhas de produção.
+          </p>
+          <ul class="service-tags">
+            <li>PETG / Nylon / ABS</li>
+            <li>Resistência Mecânica</li>
+            <li>Engenharia Reversa</li>
+          </ul>
+        </div>
+
+        <!-- Serviço 3 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 21a9 9 0 0 0 9-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 0 0 9 9z"></path>
+              <path d="M12 7v5l3 3"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Maquetes & Colecionáveis</h3>
+          <p class="service-desc">
+            Modelos de alta fidelidade para apresentações arquitetônicas, action figures personalizadas, miniaturas de jogos e réplicas anatômicas com acabamento impecável.
+          </p>
+          <ul class="service-tags">
+            <li>Resina 8K SLA</li>
+            <li>Detalhamento Extremo</li>
+            <li>Pintura & Acabamento</li>
+          </ul>
+        </div>
+
+        <!-- Serviço 4 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Manutenção & Consultoria 3D</h3>
+          <p class="service-desc">
+            Calibração de impressoras 3D, upgrades de firmware (Klipper / Marlin), instalação de hotends de alta performance e consultoria de fatiamento para empresas.
+          </p>
+          <ul class="service-tags">
+            <li>Calibração Fina</li>
+            <li>Upgrades de Extrusor</li>
+            <li>Treinamento Técnico</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfólio / Galeria Interativa -->
+  <section class="section-padding bg-surface" id="portfolio">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-badge">GALERIA DE PROJETOS</div>
+        <h2 class="section-title">Trabalhos Recentes em Destaque</h2>
+        <p class="section-subtitle">
+          Veja a qualidade das nossas impressões em diferentes materiais e aplicações.
+        </p>
+      </div>
+
+      <!-- Filtros do Portfólio -->
+      <div class="portfolio-filters">
+        <button class="port-filter-btn active" data-filter="all">Todos</button>
+        <button class="port-filter-btn" data-filter="tecnico">Peças Técnicas</button>
+        <button class="port-filter-btn" data-filter="prototipo">Prototipagem</button>
+        <button class="port-filter-btn" data-filter="arte">Arte & Colecionáveis</button>
+      </div>
+
+      <!-- Grid de Projetos -->
+      <div class="portfolio-grid" id="portfolioGrid">
+        <!-- Item 1: Técnico -->
+        <div class="portfolio-card" data-category="tecnico">
+          <div class="portfolio-img-box">
+            <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" alt="Engrenagem Técnica Helicoidal" loading="lazy">
+            <span class="port-tag">PETG Carbon</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>Engrenagem Helicoidal Industrial</h4>
+            <p>Peça de reposição para linha de empacotamento com alta resistência à abrasão.</p>
+            <div class="port-meta">
+              <span>Camada: 0.16mm</span>
+              <span>Tempo: 8h</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Protótipo -->
+        <div class="portfolio-card" data-category="prototipo">
+          <div class="portfolio-img-box">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Gabinete Eletrônico IoT" loading="lazy">
+            <span class="port-tag">PLA Tough</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>Gabinete para Dispositivo IoT</h4>
+            <p>Prototipagem funcional de case com encaixes por clique (snap-fit) para placa PCB.</p>
+            <div class="port-meta">
+              <span>Camada: 0.20mm</span>
+              <span>Tempo: 5h 30m</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Arte / Colecionável -->
+        <div class="portfolio-card" data-category="arte">
+          <div class="portfolio-img-box">
+            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80" alt="Busto Colecionável Ultra Detalhado" loading="lazy">
+            <span class="port-tag">Resina 8K</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>Busto Colecionável Mitológico</h4>
+            <p>Escultura digital com microporosidades e texturas reproduzidas fielmente em resina.</p>
+            <div class="port-meta">
+              <span>Camada: 0.05mm</span>
+              <span>Tempo: 14h</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: Técnico -->
+        <div class="portfolio-card" data-category="tecnico">
+          <div class="portfolio-img-box">
+            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80" alt="Suporte Automotivo Customizado" loading="lazy">
+            <span class="port-tag">ABS Pro</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>Duto de Arrefecimento Turbo</h4>
+            <p>Suporte resistente a temperaturas de até 105°C para preparação automotiva.</p>
+            <div class="port-meta">
+              <span>Camada: 0.20mm</span>
+              <span>Tempo: 9h</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5: Protótipo -->
+        <div class="portfolio-card" data-category="prototipo">
+          <div class="portfolio-img-box">
+            <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=800&q=80" alt="Dispositivo Médico Ergonômico" loading="lazy">
+            <span class="port-tag">Resina Bio</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>Manípulo Cirúrgico Ergonômico</h4>
+            <p>Estudo anatômico e validação tátil para equipamento de fisioterapia.</p>
+            <div class="port-meta">
+              <span>Camada: 0.05mm</span>
+              <span>Tempo: 7h</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6: Arte -->
+        <div class="portfolio-card" data-category="arte">
+          <div class="portfolio-img-box">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Luminária Voronoi Orgânica" loading="lazy">
+            <span class="port-tag">PLA Translúcido</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>Luminária Paramétrica Voronoi</h4>
+            <p>Design generativo com difusão de luz customizada para decoração de interiores.</p>
+            <div class="port-meta">
+              <span>Camada: 0.24mm</span>
+              <span>Tempo: 18h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Processo de Produção / Como Funciona -->
+  <section class="section-padding" id="processo">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-badge">AGILIDADE & QUALIDADE</div>
+        <h2 class="section-title">Como funciona nosso fluxo</h2>
+        <p class="section-subtitle">
+          Transparência e rigor técnico em cada etapa do seu pedido.
+        </p>
+      </div>
+
+      <div class="process-steps-grid">
+        <div class="step-card">
+          <div class="step-indicator">01</div>
+          <h4>Envio do Arquivo 3D</h4>
+          <p>Você envia seu arquivo (.STL, .OBJ ou .STEP) ou solicita a modelagem personalizada pela nossa equipe.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-indicator">02</div>
+          <h4>Análise & Fatiamento</h4>
+          <p>Orientamos a peça para máxima resistência, definimos suportes e validamos a espessura de paredes.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-indicator">03</div>
+          <h4>Manufatura de Precisão</h4>
+          <p>Impressão nas máquinas calibradas com ambiente climatizado para zero empenamento (warping).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-indicator">04</div>
+          <h4>Acabamento & Entrega</h4>
+          <p>Remoção cuidadosa de suportes, cura UV (para resinas), inspeção dimensional e envio expresso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos & Avaliações -->
+  <section class="section-padding bg-surface" id="depoimentos">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-badge">FEEDBACK REAL</div>
+        <h2 class="section-title">O que dizem quem já imprimiu conosco</h2>
+        <p class="section-subtitle">
+          Confiado por empresas de engenharia, escritórios de arquitetura e criadores.
+        </p>
+      </div>
+
+      <div class="testimonials-carousel-container">
+        <button class="carousel-control prev" id="carouselPrev" aria-label="Depoimento Anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <div class="testimonials-track" id="testimonialsTrack">
+          <!-- Slide 1 -->
+          <div class="testimonial-slide active">
+            <div class="card-glass testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="test-quote">
+                "Precisávamos de 4 protótipos de gabinetes eletrônicos com tolerâncias rigorosas para apresentar a um investidor em menos de 3 dias. A James 3D entregou antes do prazo com encaixes perfeitos."
+              </p>
+              <div class="test-author">
+                <div class="author-avatar">MR</div>
+                <div>
+                  <h5 class="author-name">Marcos Ribeiro</h5>
+                  <span class="author-role">Engenheiro Chefe de Hardware • TechSensors</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="testimonial-slide">
+            <div class="card-glass testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="test-quote">
+                "A qualidade de impressão em resina da James 3D é surreal. O nível de detalhes na nossa maquete arquitetônica impressionou todos os clientes no lançamento do empreendimento."
+              </p>
+              <div class="test-author">
+                <div class="author-avatar">CL</div>
+                <div>
+                  <h5 class="author-name">Camila Lourenço</h5>
+                  <span class="author-role">Arquiteta Titular • Studio Linear</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="testimonial-slide">
+            <div class="card-glass testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="test-quote">
+                "Uma engrenagem importada da nossa esteira quebrou e a reposição demoraria 45 dias da Alemanha. A James 3D modelou em PETG de alta densidade e nossa fábrica voltou a rodar no dia seguinte!"
+              </p>
+              <div class="test-author">
+                <div class="author-avatar">RF</div>
+                <div>
+                  <h5 class="author-name">Roberto Ferreira</h5>
+                  <span class="author-role">Gerente de Manutenção • Indústria Plasc</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control next" id="carouselNext" aria-label="Próximo Depoimento">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner de Ação (CTA Final) -->
+  <section class="section-padding cta-banner-section">
+    <div class="container">
+      <div class="cta-banner-card card-glass">
+        <div class="cta-banner-content">
+          <h2>Pronto para tirar seu projeto da tela?</h2>
+          <p>Envie seus arquivos ou fale com nosso especialista em manufatura aditiva. Atendimento técnico ágil e sem complicação.</p>
+          <div class="cta-banner-buttons">
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20enviar%20um%20projeto%20para%20a%20James%203D!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-large">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>Conversar com Engenheiro via WhatsApp</span>
+            </a>
+            <a href="#calculadora" class="btn btn-glass">Fazer Simulação Online</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé (Footer) -->
+  <footer class="app-footer" id="contato">
+    <div class="container footer-grid">
+      <!-- Coluna Marca -->
+      <div class="footer-col brand-col">
+        <a href="#hero" class="brand-logo mb-4">
+          <div class="logo-icon-box">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--accent-orange)"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">JAMES <span class="text-orange">3D</span></span>
+          </div>
+        </a>
+        <p class="footer-desc">
+          "Transformando ideias em realidade tridimensional." Especialistas em manufatura aditiva, prototipagem ágil e fabricação sob demanda.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links Rápidos -->
+      <div class="footer-col">
+        <h4 class="footer-title">Navegação</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#servicos">Serviços Especializados</a></li>
+          <li><a href="#calculadora">Calculadora de Preço</a></li>
+          <li><a href="#portfolio">Projetos & Portfólio</a></li>
+          <li><a href="#processo">Como Trabalhamos</a></li>
+        </ul>
+      </div>
+
+      <!-- Materiais & Tecnologia -->
+      <div class="footer-col">
+        <h4 class="footer-title">Materiais</h4>
+        <ul class="footer-links">
+          <li><a href="#calculadora">PLA & PLA Tough</a></li>
+          <li><a href="#calculadora">PETG Industrial</a></li>
+          <li><a href="#calculadora">ABS & ASA (Térmico)</a></li>
+          <li><a href="#calculadora">Resina SLA 8K Micron</a></li>
+          <li><a href="#calculadora">Filamento Flexível TPU</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato e Localização -->
+      <div class="footer-col">
+        <h4 class="footer-title">Atendimento & Oficina</h4>
+        <ul class="footer-contact-list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>(11) 99999-9999 (WhatsApp)</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>contato@james3d.com.br</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>São Paulo, SP — Envios para todo o Brasil</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-flex">
+        <span>&copy; 2026 James 3D Impressão e Prototipagem. Todos os direitos reservados.</span>
+        <div class="footer-legal-links">
+          <a href="#">Termos de Serviço</a>
+          <a href="#">Privacidade & LGPD</a>
+          <a href="#">Garantia Técnica</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão Flutuante do WhatsApp -->
+  <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20impress%C3%A3o%203D%20na%20James%203D!" target="_blank" rel="noopener noreferrer" class="whatsapp-floating-btn" id="floatingWhatsapp" title="Falar no WhatsApp">
+    <div class="floating-tooltip">Solicitar Orçamento</div>
+    <div class="pulse-ring"></div>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+  <!-- Script Principal -->
+  <script src="script.js"></script>
+</body>
+</html>
+
