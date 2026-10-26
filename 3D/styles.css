@@ -1,0 +1,494 @@
+/* ==========================================================================
+   Print Verse — Custom Styles & Glassmorphism System
+   ========================================================================== */
+
+:root {
+  --bg-dark: #06070a;
+  --bg-card: rgba(14, 17, 24, 0.75);
+  --bg-card-hover: rgba(22, 27, 40, 0.9);
+  --accent-orange: #ff5500;
+  --accent-orange-light: #ff7733;
+  --accent-cyan: #00f0ff;
+  --accent-purple: #8b5cf6;
+  --accent-emerald: #10b981;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(255, 85, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: var(--accent-orange);
+  selection-color: #ffffff;
+}
+
+::selection {
+  background: rgba(255, 85, 0, 0.35);
+  color: #ffffff;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-tech {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+}
+
+/* Background Mesh & Ambient Glows */
+.bg-grid-pattern {
+  background-size: 42px 42px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.editor-grid-light {
+  background-color: #f1f3f7;
+  background-size: 28px 28px;
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.07) 1px, transparent 1px);
+}
+
+.ambient-glow-orange {
+  background: radial-gradient(circle, rgba(255, 85, 0, 0.16) 0%, rgba(255, 85, 0, 0) 70%);
+}
+
+.ambient-glow-cyan {
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.14) 0%, rgba(0, 240, 255, 0) 70%);
+}
+
+.ambient-glow-purple {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.14) 0%, rgba(139, 92, 246, 0) 70%);
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(20, 24, 35, 0.8) 0%, rgba(11, 13, 20, 0.9) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 85, 0, 0.35);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.65), 0 0 28px rgba(255, 85, 0, 0.14);
+}
+
+.glass-card-cyan:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.65), 0 0 28px rgba(0, 240, 255, 0.14);
+}
+
+.glass-card-purple:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.65), 0 0 28px rgba(139, 92, 246, 0.14);
+}
+
+/* Text Gradients */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #ff5500 0%, #ff8800 55%, #ffaa00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-tech {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 45%, #00f0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyber {
+  background: linear-gradient(90deg, #00f0ff 0%, #8b5cf6 50%, #ff5500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.btn-primary-orange {
+  background: linear-gradient(135deg, #ff5500 0%, #ff3300 100%);
+  box-shadow: 0 10px 30px -5px rgba(255, 85, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-primary-orange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(255, 85, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  filter: brightness(1.06);
+}
+
+.btn-secondary-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.btn-secondary-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.45);
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    top: 4%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 94%;
+    opacity: 0;
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(0.96);
+    opacity: 0.6;
+  }
+}
+
+.animate-float-3d {
+  animation: floatSlow 5.5s ease-in-out infinite;
+}
+
+.laser-scan-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #00f0ff 25%, #ff5500 50%, #00f0ff 75%, transparent 100%);
+  box-shadow: 0 0 18px 3px rgba(0, 240, 255, 0.65);
+  animation: scanline 3.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.orbit-ring {
+  animation: pulseRing 6s ease-in-out infinite;
+}
+
+/* Custom 3D Extruded Piece in Editor */
+.piece-3d-shadow {
+  box-shadow:
+    0 24px 38px rgba(15, 23, 42, 0.35),
+    0 8px 0 #0f1319,
+    0 10px 15px rgba(0, 0, 0, 0.45),
+    inset 0 2px 3px rgba(255, 255, 255, 0.2);
+}
+
+.extruded-text-orange {
+  color: #ff5500;
+  text-shadow:
+    0 1px 0 #cc4400,
+    0 2px 0 #b33b00,
+    0 3px 0 #993300,
+    0 4px 8px rgba(0, 0, 0, 0.65);
+}
+
+.extruded-text-cyan {
+  color: #00f0ff;
+  text-shadow:
+    0 1px 0 #00b8c4,
+    0 2px 0 #008f99,
+    0 3px 0 #00666e,
+    0 4px 12px rgba(0, 240, 255, 0.55);
+}
+
+.extruded-text-white {
+  color: #ffffff;
+  text-shadow:
+    0 1px 0 #94a3b8,
+    0 2px 0 #64748b,
+    0 3px 0 #475569,
+    0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Tool item in Print Verse Editor Sidebar */
+.editor-tool-btn {
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.editor-tool-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.editor-tool-btn.active {
+  background: rgba(255, 85, 0, 0.12);
+  border-color: rgba(255, 85, 0, 0.55);
+  box-shadow: inset 0 0 18px rgba(255, 85, 0, 0.08);
+}
+
+.editor-tool-btn.active .tool-plus-icon {
+  background: #ff5500;
+  color: #ffffff;
+  border-color: #ff5500;
+  box-shadow: 0 0 12px rgba(255, 85, 0, 0.6);
+}
+
+/* Slicer Layer Lines Effect */
+.slicer-layers-overlay {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 85, 0, 0.16) 0px,
+    rgba(255, 85, 0, 0.16) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+/* Dropzone Styles */
+.dropzone-container {
+  border: 2px dashed rgba(255, 255, 255, 0.16);
+  background: rgba(15, 18, 27, 0.6);
+  transition: all 0.25s ease;
+}
+
+.dropzone-container:hover {
+  border-color: rgba(255, 85, 0, 0.5);
+  background: rgba(255, 85, 0, 0.04);
+}
+
+.dropzone-container.dragover {
+  border-color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+  transform: scale(1.01);
+}
+
+/* Custom Range Slider */
+input[type="range"].custom-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #181d29;
+  border-radius: 9999px;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+input[type="range"].custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff5500;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 85, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"].custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #ff6a1a;
+}
+
+input[type="range"].custom-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff5500;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(255, 85, 0, 0.8);
+}
+
+/* Relief Modes: Alto-Relevo (Raised) vs Baixo-Relevo (Debossed / Sunken) */
+.relief-raised {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.75));
+  transition: all 0.25s ease;
+}
+
+.relief-sunken {
+  filter: drop-shadow(0 -1px 1px rgba(255, 255, 255, 0.25)) drop-shadow(0 3px 2px rgba(0, 0, 0, 0.95)) brightness(0.85);
+  transform: scale(0.97) translateY(1px);
+  transition: all 0.25s ease;
+}
+
+/* 3D Extruded Image Canvas / SVG */
+.image-relief-canvas {
+  max-width: 180px;
+  max-height: 85px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+/* 3D Printing Typography Options */
+.font-3d-inter {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.font-3d-space {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.font-3d-righteous {
+  font-family: 'Righteous', cursive, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-3d-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.08em;
+  font-size: 1.2em;
+}
+
+.font-3d-fredoka {
+  font-family: 'Fredoka', cursive, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Structure Modes: "Sobre Base" vs "Peça Inteiriça" */
+.mode-base-container {
+  background: #1d222c !important;
+  box-shadow:
+    0 24px 38px rgba(15, 23, 42, 0.35),
+    0 8px 0 #0f1319,
+    0 10px 15px rgba(0, 0, 0, 0.45),
+    inset 0 2px 3px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mode-standalone-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mode-standalone-container #editor-3d-text {
+  letter-spacing: -0.04em !important;
+  color: #ff5500 !important;
+}
+
+.mode-standalone-container .standalone-bridge-bar {
+  height: 9px !important;
+  background: #ff5500 !important;
+  box-shadow: 0 4px 0 #993300, 0 8px 18px rgba(0, 0, 0, 0.6) !important;
+}
+
+.mode-standalone-container #editor-keychain-ring {
+  border-color: #ff5500 !important;
+  box-shadow: 0 4px 0 #993300, 0 8px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Standalone Connecting Bridge (Monolithic 3D Print) */
+.standalone-bridge-bar {
+  height: 6px;
+  background: #ff5500;
+  border-radius: 9999px;
+  box-shadow: 0 4px 0 #993300, 0 8px 14px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Keychain Ring Positions: Left, Right, Top */
+.ring-pos-right {
+  position: absolute;
+  right: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mode-standalone-container .ring-pos-right {
+  right: -16px;
+  top: 55%;
+}
+
+.ring-pos-left {
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mode-standalone-container .ring-pos-left {
+  left: -16px;
+  top: 55%;
+}
+
+.ring-pos-top {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mode-standalone-container .ring-pos-top {
+  top: -18px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06070a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #06070a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5500;
+}

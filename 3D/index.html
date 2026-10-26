@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Print Verse — Modele sem saber modelar. Escolha, personalize e comece a imprimir.</title>
+  <meta name="description" content="Ferramentas guiadas que transformam nomes, textos e imagens da internet em peças prontas para impressão 3D em minutos. Arquivos .STL e .3MF com licença comercial." />
+
+  <!-- Google Fonts: Space Grotesk, Inter, Righteous, Bebas Neue & Fredoka (Fontes Otimizadas para Impressão 3D) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=Righteous&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            printverse: {
+              bg: '#06070a',
+              card: '#0f121a',
+              orange: '#ff5500',
+              cyan: '#00f0ff',
+              purple: '#8b5cf6',
+              emerald: '#10b981'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-grid-pattern relative antialiased selection:bg-orange-500 selection:text-white">
+
+  <!-- Ambient Background Glows -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+    <div class="ambient-glow-orange absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full blur-3xl"></div>
+    <div class="ambient-glow-cyan absolute top-[20%] -right-48 w-[580px] h-[580px] rounded-full blur-3xl"></div>
+    <div class="ambient-glow-purple absolute top-[54%] left-[10%] w-[600px] h-[600px] rounded-full blur-3xl"></div>
+    <div class="ambient-glow-orange absolute bottom-10 right-[12%] w-[540px] h-[540px] rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- ========================================================================
+       1. HEADER / NAVBAR
+       ======================================================================== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/5 bg-[#06070a]/85 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo: Print Verse (Technological and Minimalist) -->
+      <a href="#inicio" class="flex items-center gap-3.5 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#ff5500] via-[#ff3b00] to-[#00f0ff] p-[1.5px] shadow-lg shadow-orange-500/25 group-hover:shadow-cyan-500/30 transition-all">
+          <div class="w-full h-full bg-[#090b10] rounded-[10px] flex items-center justify-center relative overflow-hidden">
+            <!-- Technological 3D Layer mark -->
+            <div class="flex flex-col items-center justify-center gap-[2.5px]">
+              <span class="w-5 h-[2.5px] bg-[#00f0ff] rounded-full"></span>
+              <span class="w-3.5 h-[2.5px] bg-white rounded-full"></span>
+              <span class="w-5 h-[2.5px] bg-[#ff5500] rounded-full"></span>
+            </div>
+            <span class="absolute bottom-0.5 right-1 text-[7px] font-mono font-bold tracking-tighter text-cyan-400">PV</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-baseline gap-1.5">
+            <span class="font-display font-extrabold text-2xl tracking-tight text-white">Print</span>
+            <span class="font-display font-extrabold text-2xl tracking-tight text-[#ff5500]">Verse</span>
+          </div>
+          <span class="text-[10px] uppercase tracking-[0.22em] text-slate-400 -mt-1 font-semibold">3D Creator Platform</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#inicio" class="hover:text-white transition-colors">Início</a>
+        <a href="#editor" class="hover:text-white transition-colors flex items-center gap-1.5">
+          Editor Online
+          <span class="px-2 py-0.5 text-[10px] font-bold bg-orange-500/20 text-[#ff5500] border border-orange-500/30 rounded-full">Interativo</span>
+        </a>
+        <a href="#recursos" class="hover:text-white transition-colors">Recursos</a>
+        <a href="#como-funciona" class="hover:text-white transition-colors">Como Funciona</a>
+        <a href="#galeria" class="hover:text-white transition-colors">Galeria</a>
+        <a href="#planos" class="hover:text-white transition-colors">Planos</a>
+      </nav>
+
+      <!-- CTA Button & Mobile Menu Trigger -->
+      <div class="flex items-center gap-3">
+        <a href="#editor" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-bold text-sm text-white btn-primary-orange">
+          <span>Acessar Ferramenta</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+
+        <button id="mobile-menu-btn" aria-label="Abrir Menu" class="md:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-[#090b12]/95 backdrop-blur-2xl px-6 py-5 space-y-4">
+      <div class="flex flex-col space-y-3 text-base font-medium text-slate-200">
+        <a href="#inicio" class="mobile-nav-link py-1.5 hover:text-[#ff5500]">Início</a>
+        <a href="#editor" class="mobile-nav-link py-1.5 hover:text-[#ff5500]">Editor Online & Ferramentas</a>
+        <a href="#recursos" class="mobile-nav-link py-1.5 hover:text-[#ff5500]">Recursos & Benefícios</a>
+        <a href="#como-funciona" class="mobile-nav-link py-1.5 hover:text-[#ff5500]">Como Funciona</a>
+        <a href="#galeria" class="mobile-nav-link py-1.5 hover:text-[#ff5500]">Galeria de Projetos</a>
+        <a href="#planos" class="mobile-nav-link py-1.5 hover:text-[#ff5500]">Planos de Assinatura</a>
+      </div>
+      <div class="pt-2 border-t border-white/10">
+        <a href="#editor" class="mobile-nav-link w-full py-3 rounded-xl font-display font-bold text-center text-white btn-primary-orange flex items-center justify-center gap-2">
+          <span>Acessar Ferramenta Online</span>
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. HERO SECTION
+       ======================================================================== -->
+  <section id="inicio" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+
+        <!-- Left Column: High-Impact Copy & Value Prop -->
+        <div class="lg:col-span-6 space-y-7 text-left">
+          
+          <!-- Top Pill Badge -->
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff5500] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#ff5500]"></span>
+            </span>
+            <span class="text-xs font-semibold tracking-wide text-slate-200 uppercase">
+              Print Verse 3D • <span class="text-[#ff5500] font-bold">.STL</span> & <span class="text-[#00f0ff] font-bold">.3MF</span> Nativos
+            </span>
+          </div>
+
+          <!-- Main Impact Headline as requested: Escolha. Personalize. Comece a imprimir. -->
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.75rem] font-extrabold tracking-tight leading-[1.06] text-white">
+            Escolha. Personalize. <span class="text-gradient-orange">Comece a imprimir.</span>
+          </h1>
+
+          <!-- Slogan / Subtitle & Value Proposition -->
+          <div class="space-y-3">
+            <p class="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight">
+              Modele sem saber modelar.
+            </p>
+            <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
+              Ferramentas guiadas que transformam <strong class="text-white">nomes, textos e imagens da internet</strong> em peças prontas para impressão 3D (como chaveiros personalizados, peças com logos, letras-caixa para LED e letreiros), mesmo para quem nunca abriu um software CAD na vida.
+            </p>
+          </div>
+
+          <!-- Visual Badge Highlight: Pronto para comercializar (STL e 3MF com licença comercial incluída) -->
+          <div class="rounded-2xl bg-gradient-to-r from-[#071912] to-[#0c1c24] border border-emerald-500/40 p-4 sm:p-4.5 flex items-center gap-4 shadow-xl shadow-emerald-950/20">
+            <div class="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+              <i data-lucide="badge-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-display font-bold text-white text-base sm:text-lg">Pronto para comercializar</span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 text-[11px] font-mono font-bold uppercase">Licença Ativa</span>
+              </div>
+              <div class="text-xs sm:text-sm text-slate-300 mt-0.5">
+                Arquivos <strong class="text-white">.STL</strong> e <strong class="text-cyan-400">.3MF</strong> com <strong class="text-emerald-400">licença comercial incluída</strong> para vender suas peças físicas.
+              </div>
+            </div>
+          </div>
+
+          <!-- Dual CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1">
+            <a href="#editor" class="px-8 py-4 rounded-2xl font-display font-bold text-base text-white btn-primary-orange flex items-center justify-center gap-3 group">
+              <span>Testar Ferramenta Online</span>
+              <i data-lucide="zap" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+            </a>
+            <button id="open-demo-btn" type="button" class="px-7 py-4 rounded-2xl font-display font-semibold text-base text-slate-100 btn-secondary-glass flex items-center justify-center gap-3 group">
+              <span class="w-8 h-8 rounded-lg bg-cyan-400/15 border border-cyan-400/30 flex items-center justify-center text-[#00f0ff] group-hover:scale-110 transition-transform">
+                <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+              </span>
+              <span>Ver Demonstração</span>
+            </button>
+          </div>
+
+          <!-- Quick Spec Badges -->
+          <div class="pt-4 border-t border-white/10 grid grid-cols-3 gap-3 max-w-lg">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-[#ff5500] shrink-0">
+                <i data-lucide="file-box" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white">.STL & .3MF</div>
+                <div class="text-[11px] text-slate-400">Formatos padrão</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-[#00f0ff] shrink-0">
+                <i data-lucide="folder-kanban" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white">Gerenciador</div>
+                <div class="text-[11px] text-slate-400">Bônus de produção</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white">100% Manifold</div>
+                <div class="text-[11px] text-slate-400">Zero erros no fatiador</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: High-Tech Interactive Preview Visualizer -->
+        <div class="lg:col-span-6 relative">
+          
+          <!-- Outer Ambient Glow -->
+          <div class="absolute -inset-2 bg-gradient-to-r from-[#ff5500]/25 via-[#00f0ff]/20 to-[#8b5cf6]/25 rounded-3xl blur-2xl -z-10"></div>
+
+          <div class="glass-panel rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
+            
+            <!-- Top Window Bar -->
+            <div class="px-5 py-3.5 bg-[#090b12] border-b border-white/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-[#ff5500]"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400/70"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400/70"></span>
+                <span class="ml-2 text-xs font-mono text-slate-400">printverse-engine v5.2 // web-to-3d</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Slicer-Ready
+                </span>
+              </div>
+            </div>
+
+            <!-- Interactive Stage Switcher Tabs inside Hero Mockup -->
+            <div class="px-5 pt-4 pb-2 bg-[#0e111a]/90 flex flex-wrap items-center justify-between gap-2 border-b border-white/5">
+              <div class="flex items-center gap-1.5 bg-[#06070a] p-1 rounded-xl border border-white/10">
+                <button type="button" data-hero-mode="split" class="hero-mode-btn active px-3 py-1.5 rounded-lg text-xs font-semibold transition-all bg-[#ff5500] text-white">
+                  Conversão (Imagem ➔ 3D)
+                </button>
+                <button type="button" data-hero-mode="wireframe" class="hero-mode-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-400 hover:text-white">
+                  Malha .STL
+                </button>
+                <button type="button" data-hero-mode="slicer" class="hero-mode-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-400 hover:text-white">
+                  Camadas .3MF
+                </button>
+              </div>
+              <div class="text-[11px] font-mono text-cyan-400 flex items-center gap-1">
+                <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                <span id="hero-render-time">Conversão: 00m 08s</span>
+              </div>
+            </div>
+
+            <!-- Main 3D Viewport -->
+            <div id="hero-viewport" class="relative h-[370px] sm:h-[410px] bg-gradient-to-b from-[#0b0e17] to-[#06070c] p-6 flex flex-col justify-between overflow-hidden select-none">
+              
+              <!-- Animated Laser Scanline -->
+              <div class="laser-scan-bar"></div>
+
+              <!-- Perspective Grid Floor -->
+              <div class="absolute inset-0 bg-grid-pattern opacity-60"></div>
+
+              <!-- Top Floating Input Card (2D Reference Image) -->
+              <div class="relative z-10 flex items-start justify-between gap-4">
+                <div class="glass-card rounded-2xl p-3 border border-white/15 w-44 sm:w-48 shadow-xl">
+                  <div class="flex items-center justify-between text-[10px] uppercase tracking-wider text-slate-400 mb-2 font-semibold">
+                    <span>1. Imagem / Logo</span>
+                    <span class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">PNG/JPG</span>
+                  </div>
+                  <div class="h-20 rounded-xl bg-gradient-to-br from-slate-900 to-[#121622] border border-white/10 flex flex-col items-center justify-center p-2 relative overflow-hidden">
+                    <div class="text-[11px] font-bold text-slate-400">Referência Web</div>
+                    <div class="font-display font-extrabold text-lg text-white mt-0.5 tracking-tight flex items-center gap-1">
+                      <span>Print</span><span class="text-[#ff5500]">Verse</span>
+                    </div>
+                    <span class="text-[9px] text-cyan-400 mt-1 font-mono">Auto-vetorizado</span>
+                  </div>
+                </div>
+
+                <!-- Conversion Flow Arrow Pill -->
+                <div class="hidden sm:flex flex-col items-center justify-center pt-6">
+                  <div class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[#00f0ff] text-[11px] font-mono flex items-center gap-1.5 shadow-lg shadow-cyan-500/10">
+                    <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
+                    <span>Extrusão Automática</span>
+                  </div>
+                  <div class="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#00f0ff] to-[#ff5500] mt-2"></div>
+                </div>
+
+                <!-- Telemetry Stats Box -->
+                <div class="glass-card rounded-2xl p-3 border border-white/15 text-right font-mono">
+                  <div class="text-[10px] text-slate-400 uppercase">Peça Gerada</div>
+                  <div id="hero-tris-count" class="text-sm font-bold text-white mt-0.5">38.620 tris</div>
+                  <div class="text-[11px] text-emerald-400 flex items-center justify-end gap-1 mt-1">
+                    <i data-lucide="check" class="w-3 h-3"></i>
+                    <span>Malha Fechada</span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Camada: 0.20mm</div>
+                </div>
+              </div>
+
+              <!-- Centerpiece 3D Generated Model Representation -->
+              <div class="relative z-10 my-auto flex items-center justify-center">
+                <!-- Orbit rings -->
+                <div class="orbit-ring absolute w-64 h-64 rounded-full border border-[#ff5500]/25 pointer-events-none"></div>
+                <div class="orbit-ring absolute w-48 h-48 rounded-full border border-[#00f0ff]/25 pointer-events-none" style="animation-delay: 1s;"></div>
+
+                <!-- 3D Model Card / Extruded Object -->
+                <div id="hero-3d-object" class="animate-float-3d relative w-72 sm:w-80 h-36 rounded-[28px] bg-gradient-to-b from-[#202533] to-[#121622] border-2 border-white/20 piece-3d-shadow flex items-center justify-center px-6 transition-all duration-500">
+                  <!-- Slicer Layer Overlay -->
+                  <div id="hero-slicer-overlay" class="slicer-layers-overlay absolute inset-0 rounded-[26px] opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+                  <!-- Wireframe Overlay -->
+                  <div id="hero-wireframe-overlay" class="absolute inset-0 rounded-[26px] opacity-0 transition-opacity duration-300 pointer-events-none" style="background-image: linear-gradient(45deg, rgba(0,240,255,0.22) 25%, transparent 25%, transparent 50%, rgba(0,240,255,0.22) 50%, rgba(0,240,255,0.22) 75%, transparent 75%, transparent); background-size: 16px 16px;"></div>
+
+                  <!-- Top glossy bevel highlight -->
+                  <div class="absolute top-2.5 left-6 right-6 h-1.5 rounded-full bg-white/15"></div>
+
+                  <!-- Keychain Loop on the Right -->
+                  <div class="absolute -right-6 w-12 h-12 rounded-full border-[8px] border-[#181d28] bg-[#090b10] shadow-lg"></div>
+
+                  <!-- 3D Extruded Relief Logo inside the Piece -->
+                  <div class="relative z-10 text-center">
+                    <span id="hero-3d-label" class="font-display font-extrabold text-3xl sm:text-4xl tracking-tight extruded-text-orange select-none block">
+                      Print Verse
+                    </span>
+                    <div class="w-44 h-1.5 rounded-full bg-[#ff5500] mx-auto mt-1 shadow-[0_3px_0_#993300]"></div>
+                  </div>
+
+                  <!-- Z-Height Dimension Indicator -->
+                  <div class="absolute -left-12 top-1/2 -translate-y-1/2 hidden sm:flex flex-col items-center text-[10px] font-mono text-[#00f0ff]">
+                    <span>▲</span>
+                    <span class="bg-[#06070a]/90 px-1.5 py-0.5 rounded border border-cyan-500/30">4.5mm</span>
+                    <span>▼</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Export Bar inside Mockup -->
+              <div class="relative z-10 glass-card rounded-2xl p-3.5 border border-white/15 flex flex-wrap items-center justify-between gap-3 bg-[#090c14]/90">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-white">Modelo 3D pronto para fatiamento</div>
+                    <div class="text-[11px] text-slate-400">Base sólida com relevo, furos e tolerâncias calibradas</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="triggerExportToast('.STL')" class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-[#ff5500] text-white text-xs font-display font-bold transition-colors flex items-center gap-1.5 border border-white/10">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    <span>.STL</span>
+                  </button>
+                  <button type="button" onclick="triggerExportToast('.3MF')" class="px-3.5 py-1.5 rounded-xl bg-[#ff5500] hover:bg-[#ff6a1a] text-white text-xs font-display font-bold transition-colors flex items-center gap-1.5 shadow-lg shadow-orange-500/25">
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                    <span>.3MF Color</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. ÁREA DE FERRAMENTAS / EDITOR ONLINE (SIMULAÇÃO NA INTERFACE)
+       ======================================================================== -->
+  <section id="editor" class="py-24 relative border-y border-white/5 bg-[#050609]/95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-[#ff5500] text-xs font-bold uppercase tracking-widest">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Ambiente de Criação Guiado</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">
+          Print Verse Studio: <span class="text-gradient-orange">Editor Online em Tempo Real</span>
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg">
+          Experimente as opções guiadas abaixo. Selecione uma ferramenta na barra esquerda, digite sua marca ou troque de arte para ver a conversão e o relevo 3D mudarem ao vivo.
+        </p>
+      </div>
+
+      <!-- Editor Window Mockup Container -->
+      <div class="rounded-[28px] p-3 sm:p-5 bg-[#0f1118] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.8)]">
+        <div class="rounded-2xl overflow-hidden border border-white/10 bg-[#131620]">
+
+          <!-- Editor Window Titlebar -->
+          <div class="px-5 py-3.5 bg-[#171a25] border-b border-white/10 flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5500]"></span>
+              <span class="w-3 h-3 rounded-full bg-slate-600"></span>
+              <span class="w-3 h-3 rounded-full bg-slate-600"></span>
+              <span class="ml-2 font-display font-extrabold text-lg text-white">
+                Print<span class="text-[#ff5500]">Verse</span> <span class="text-xs font-mono font-normal text-slate-400">// Editor 3D</span>
+              </span>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs font-mono">
+              <span class="hidden sm:inline-flex items-center gap-1.5 text-slate-300">
+                <i data-lucide="hard-drive" class="w-3.5 h-3.5 text-orange-400"></i>
+                <span>Gerenciador Ativo</span>
+              </span>
+              <div class="flex items-center gap-2 uppercase text-slate-200">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]"></span>
+                <span class="font-bold">EDITOR ONLINE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Editor Body: Left Sidebar (Dynamic Customization Hub) + Right Canvas (Real-Time 3D Preview) -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[620px]">
+
+            <!-- Painel Esquerdo: Controles Dinâmicos de Customização -->
+            <div class="lg:col-span-5 bg-[#0c0e14] p-4 sm:p-5 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 space-y-5">
+              
+              <div class="space-y-4">
+                
+                <!-- 1. MODO DE ESTRUTURA DA PEÇA (TOGGLE / SELETOR) -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1.5">
+                      <i data-lucide="layout-template" class="w-3.5 h-3.5 text-[#ff5500]"></i>
+                      <span>1. Modo de Estrutura da Peça</span>
+                    </span>
+                    <span id="structure-mode-badge" class="text-[10px] font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded-full border border-orange-500/25">
+                      Sobre Base
+                    </span>
+                  </div>
+
+                  <!-- Seletor de 2 Opções (Opção A vs Opção B) -->
+                  <div class="grid grid-cols-2 gap-2">
+                    <!-- Opção A: Texto/Logo sobre Base -->
+                    <button
+                      type="button"
+                      id="btn-mode-base"
+                      class="structure-btn active p-3 rounded-xl border border-orange-500/60 bg-orange-500/15 text-left transition-all group shadow-sm"
+                    >
+                      <div class="flex items-center justify-between mb-1">
+                        <i data-lucide="layers" class="w-4 h-4 text-[#ff5500]"></i>
+                        <span class="w-2 h-2 rounded-full bg-[#ff5500] group-[.active]:ring-4 ring-orange-500/20"></span>
+                      </div>
+                      <div class="text-xs font-bold text-white leading-tight">Texto sobre Base</div>
+                      <div class="text-[10px] text-slate-400 mt-0.5 leading-snug">Base geométrica com relevo</div>
+                    </button>
+
+                    <!-- Opção B: Texto/Logo como Peça Inteiriça -->
+                    <button
+                      type="button"
+                      id="btn-mode-standalone"
+                      class="structure-btn p-3 rounded-xl border border-white/10 bg-white/5 text-left transition-all group hover:border-white/20"
+                    >
+                      <div class="flex items-center justify-between mb-1">
+                        <i data-lucide="scissors" class="w-4 h-4 text-cyan-400"></i>
+                        <span class="w-2 h-2 rounded-full bg-slate-600"></span>
+                      </div>
+                      <div class="text-xs font-bold text-white leading-tight">Peça Inteiriça</div>
+                      <div class="text-[10px] text-slate-400 mt-0.5 leading-snug">Letras contínuas sem fundo</div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 2. CAMPO DE TEXTO & UPLOAD DE IMAGEM -->
+                <div class="rounded-2xl bg-[#121620] p-3.5 border border-white/10 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1.5">
+                      <i data-lucide="type" class="w-3.5 h-3.5 text-cyan-400"></i>
+                      <span>2. Conteúdo da Peça</span>
+                    </span>
+                    <span class="text-[10px] font-mono text-slate-400">Texto ou Logo</span>
+                  </div>
+
+                  <!-- Caixa de Texto Principal -->
+                  <div>
+                    <input
+                      id="live-brand-input"
+                      type="text"
+                      maxlength="16"
+                      value="PrintVerse"
+                      placeholder="Digite seu nome ou texto..."
+                      class="w-full px-3.5 py-2.5 rounded-xl bg-[#090b12] border border-white/15 text-sm text-white font-bold focus:outline-none focus:border-[#ff5500] transition-colors"
+                    />
+                  </div>
+
+                  <!-- Dropzone Compacta de Imagem -->
+                  <div
+                    id="image-dropzone"
+                    class="dropzone-container rounded-xl p-2.5 text-center cursor-pointer relative group flex items-center justify-between border border-dashed border-white/20 hover:border-[#ff5500]"
+                  >
+                    <input
+                      type="file"
+                      id="image-upload-input"
+                      accept="image/png, image/jpeg, image/svg+xml, image/webp"
+                      class="hidden"
+                    />
+
+                    <!-- Empty State View -->
+                    <div id="dropzone-empty-state" class="w-full flex items-center justify-between px-1">
+                      <div class="flex items-center gap-2.5">
+                        <div class="w-7 h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-[#ff5500]">
+                          <i data-lucide="image-plus" class="w-3.5 h-3.5"></i>
+                        </div>
+                        <div class="text-left">
+                          <div class="text-xs font-bold text-white group-hover:text-[#ff5500] transition-colors">
+                            Ou arraste uma imagem/logo
+                          </div>
+                          <div class="text-[10px] text-slate-400">PNG, JPG ou SVG</div>
+                        </div>
+                      </div>
+                      <span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-slate-300">Upload</span>
+                    </div>
+
+                    <!-- Loaded State View -->
+                    <div id="dropzone-loaded-state" class="hidden w-full flex items-center justify-between gap-2 bg-[#090b12] p-1.5 rounded-lg border border-emerald-500/30">
+                      <div class="flex items-center gap-2 overflow-hidden">
+                        <img id="dropzone-thumb-preview" src="" alt="Thumbnail" class="w-7 h-7 rounded object-contain bg-black/40 border border-white/10 shrink-0" />
+                        <div class="text-left truncate">
+                          <div id="dropzone-file-name" class="text-xs font-bold text-white truncate max-w-[140px]">logo.png</div>
+                          <div class="text-[9px] text-emerald-400 font-mono">Relevo Ativo</div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        id="btn-remove-image"
+                        title="Remover imagem"
+                        class="p-1 rounded bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 transition-colors shrink-0"
+                      >
+                        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 3. SELETOR DE FONTE PARA IMPRESSÃO 3D -->
+                <div class="rounded-2xl bg-[#121620] p-3.5 border border-white/10 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1.5">
+                      <i data-lucide="spell-check" class="w-3.5 h-3.5 text-purple-400"></i>
+                      <span>3. Seletor de Fonte 3D</span>
+                    </span>
+                    <span class="text-[10px] font-mono text-purple-300">Geometrias Robustas</span>
+                  </div>
+
+                  <select
+                    id="font-selector"
+                    class="w-full px-3 py-2 rounded-xl bg-[#090b12] border border-white/15 text-xs text-white font-semibold focus:outline-none focus:border-purple-400 cursor-pointer"
+                  >
+                    <option value="font-3d-inter" selected>Inter Heavy (Moderna & Robusta)</option>
+                    <option value="font-3d-space">Space Grotesk (Futurista & Geométrica)</option>
+                    <option value="font-3d-righteous">Righteous (Sci-Fi & Conectada)</option>
+                    <option value="font-3d-bebas">Bebas Neue (Alta & Compacta)</option>
+                    <option value="font-3d-fredoka">Fredoka Bold (Bordas Orgânicas Anti-Quebra)</option>
+                  </select>
+                </div>
+
+                <!-- 4. AJUSTES DE ESPESSURA E ALTURA (SLIDERS MILIMÉTRICOS) -->
+                <div class="rounded-2xl bg-[#121620] p-3.5 border border-white/10 space-y-3.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1.5">
+                      <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-[#ff5500]"></i>
+                      <span>4. Altura & Espessura (mm)</span>
+                    </span>
+                    <span id="total-thickness-badge" class="font-mono text-xs px-2 py-0.5 rounded-md bg-orange-500/20 text-[#ff5500] font-bold border border-orange-500/30">
+                      Total: 7.5 mm
+                    </span>
+                  </div>
+
+                  <!-- Slider 1: Profundidade do Relevo (Extrusão do Texto/Arte) -->
+                  <div class="space-y-1">
+                    <div class="flex items-center justify-between text-[11px] text-slate-400">
+                      <span>Profundidade do Relevo:</span>
+                      <span id="relief-depth-val" class="font-mono text-xs text-white font-bold">3.0 mm</span>
+                    </div>
+                    <input
+                      id="relief-depth-slider"
+                      type="range"
+                      min="1.0"
+                      max="6.0"
+                      step="0.2"
+                      value="3.0"
+                      class="custom-slider"
+                    />
+                    <div class="flex items-center justify-between text-[9px] font-mono text-slate-500">
+                      <span>1.0mm (Raso)</span>
+                      <span>3.0mm (Padrão)</span>
+                      <span>6.0mm (Profundo)</span>
+                    </div>
+                  </div>
+
+                  <!-- Slider 2: Espessura da Base / Peça -->
+                  <div id="base-thickness-group" class="space-y-1 pt-1 border-t border-white/5">
+                    <div class="flex items-center justify-between text-[11px] text-slate-400">
+                      <span>Espessura da Base:</span>
+                      <span id="base-thickness-val" class="font-mono text-xs text-cyan-400 font-bold">4.5 mm</span>
+                    </div>
+                    <input
+                      id="base-thickness-slider"
+                      type="range"
+                      min="2.0"
+                      max="8.0"
+                      step="0.5"
+                      value="4.5"
+                      class="custom-slider"
+                    />
+                    <div class="flex items-center justify-between text-[9px] font-mono text-slate-500">
+                      <span>2.0mm (Fina)</span>
+                      <span>4.5mm (Padrão)</span>
+                      <span>8.0mm (Robusta)</span>
+                    </div>
+                  </div>
+
+                  <!-- Inversor Alto/Baixo Relevo (para modo sobre base) -->
+                  <div id="relief-mode-toggle-group">
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                      <button
+                        type="button"
+                        id="btn-relief-positive"
+                        class="relief-mode-btn active px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1.5 border border-orange-500/50 bg-orange-500/15 text-white transition-all"
+                      >
+                        <i data-lucide="arrow-up-circle" class="w-3.5 h-3.5 text-[#ff5500]"></i>
+                        <span>Alto-Relevo (+)</span>
+                      </button>
+                      <button
+                        type="button"
+                        id="btn-relief-negative"
+                        class="relief-mode-btn px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1.5 border border-white/10 bg-white/5 text-slate-400 hover:text-white transition-all"
+                      >
+                        <i data-lucide="arrow-down-circle" class="w-3.5 h-3.5 text-cyan-400"></i>
+                        <span>Baixo-Relevo (-)</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 5. GERENCIADOR DE FURO DO CHAVEIRO -->
+                <div class="rounded-2xl bg-[#121620] p-3.5 border border-white/10 space-y-2.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1.5">
+                      <i data-lucide="circle-dot" class="w-3.5 h-3.5 text-emerald-400"></i>
+                      <span>5. Gerenciador de Furo</span>
+                    </span>
+                    
+                    <!-- Toggle Switch para Ativar/Desativar Furo -->
+                    <label class="flex items-center gap-2 cursor-pointer select-none">
+                      <span class="text-[10px] text-slate-400 font-mono">Furo:</span>
+                      <input id="keychain-hole-toggle" type="checkbox" checked class="sr-only peer" />
+                      <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500 relative"></div>
+                    </label>
+                  </div>
+
+                  <!-- Seletor de Posição do Furo (Esquerda, Direita, Topo) -->
+                  <div id="hole-position-selector" class="grid grid-cols-3 gap-2">
+                    <button
+                      type="button"
+                      data-hole-pos="left"
+                      class="hole-pos-btn px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 border border-white/10 bg-white/5 text-slate-400 hover:text-white transition-all"
+                    >
+                      <i data-lucide="arrow-left" class="w-3 h-3"></i>
+                      <span>Esquerda</span>
+                    </button>
+                    <button
+                      type="button"
+                      data-hole-pos="right"
+                      class="hole-pos-btn active px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 border border-emerald-500/50 bg-emerald-500/15 text-white transition-all shadow-sm"
+                    >
+                      <span>Direita</span>
+                      <i data-lucide="arrow-right" class="w-3 h-3 text-emerald-400"></i>
+                    </button>
+                    <button
+                      type="button"
+                      data-hole-pos="top"
+                      class="hole-pos-btn px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 border border-white/10 bg-white/5 text-slate-400 hover:text-white transition-all"
+                    >
+                      <i data-lucide="arrow-up" class="w-3 h-3"></i>
+                      <span>Topo</span>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Área Central de Pré-visualização em Tempo Real (com Grid Quadriculado) -->
+            <div class="lg:col-span-7 editor-grid-light relative p-5 sm:p-7 flex flex-col justify-between overflow-hidden min-h-[580px]">
+              
+              <!-- Top Preview Header & Floating Reference Card -->
+              <div class="relative z-10 flex items-start justify-between gap-3">
+                <div>
+                  <span class="text-[11px] font-mono font-bold tracking-[0.2em] text-slate-500 uppercase block mb-2.5">
+                    PRÉVIA EM TEMPO REAL
+                  </span>
+
+                  <!-- White Floating Reference Card -->
+                  <div class="bg-white rounded-2xl p-3 shadow-xl border border-slate-200/90 w-44 sm:w-48 transition-transform hover:scale-105 cursor-pointer">
+                    <div class="flex items-center justify-between text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-1">
+                      <span id="preview-badge-label">REFERÊNCIA 2D</span>
+                      <span id="preview-active-mode-label" class="text-orange-600 font-bold">SOBRE BASE</span>
+                    </div>
+                    <div class="py-1 text-center flex flex-col items-center justify-center min-h-[50px]">
+                      <img id="preview-reference-img" src="" alt="Arte 2D" class="hidden max-h-12 max-w-full object-contain mb-1" />
+                      <span id="preview-mini-text" class="font-3d-inter text-xl text-[#ff5500] border-b-2 border-[#ff5500]">
+                        PrintVerse
+                      </span>
+                    </div>
+                    <div class="text-[9px] font-mono text-slate-400 text-center mt-0.5">
+                      preview sincronizado
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Format, Dimensions & Manifold Badge -->
+                <div class="flex flex-col items-end gap-1.5 font-mono">
+                  <span class="px-2.5 py-1 rounded-lg bg-slate-950 text-white text-[11px] font-bold shadow flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse"></span>
+                    <span>STL & .3MF</span>
+                  </span>
+                  <span id="preview-dimensions" class="px-2.5 py-0.5 rounded bg-white/95 text-slate-800 text-[10px] font-bold border border-slate-300 shadow-sm">
+                    78 × 32 × 7.5 mm
+                  </span>
+                  <span id="preview-manifold-status" class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 text-[10px] font-bold border border-emerald-400/40">
+                    100% Manifold
+                  </span>
+                </div>
+              </div>
+
+              <!-- Center 3D Extruded Piece Preview with Alignment Targets -->
+              <div class="relative my-auto py-8 flex items-center justify-center">
+                <!-- Alignment Target Circles -->
+                <div class="absolute w-72 h-72 rounded-full border border-orange-400/30 pointer-events-none"></div>
+                <div class="absolute w-52 h-52 rounded-full border border-purple-400/25 pointer-events-none"></div>
+
+                <!-- 3D Piece Body (Dynamic: Mode Base vs Mode Standalone) -->
+                <div
+                  id="editor-3d-piece"
+                  class="mode-base-container relative w-68 sm:w-80 min-h-[140px] rounded-[26px] flex items-center justify-center px-6 transition-all duration-500"
+                >
+                  <!-- Top Highlight Bevel (active in base mode) -->
+                  <div id="editor-base-bevel" class="absolute top-2.5 left-5 right-5 h-1.5 rounded-full bg-white/15"></div>
+
+                  <!-- Keychain Hole Ring (Dynamic Position: Right, Left, Top) -->
+                  <div
+                    id="editor-keychain-ring"
+                    class="ring-pos-right w-11 h-11 rounded-full border-[7.5px] border-[#1d222c] bg-[#f1f3f7] shadow-lg transition-all duration-300 flex items-center justify-center"
+                  >
+                    <!-- Inner Hole Center Indicator -->
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#0c0e14]/80 shadow-inner"></span>
+                  </div>
+
+                  <!-- 3D Relief Container (Images or Extruded Artwork) -->
+                  <div id="editor-relief-container" class="relative z-10 text-center flex flex-col items-center justify-center relief-raised transition-all duration-300 py-4 w-full">
+                    
+                    <!-- Extruded Image Element (shown if image uploaded) -->
+                    <img id="editor-3d-img" src="" alt="3D Relief Image" class="hidden image-relief-canvas mb-1 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]" />
+
+                    <!-- Monolithic Continuous Text Assembly -->
+                    <div id="monolithic-letters-wrapper" class="relative flex items-center justify-center">
+                      <span
+                        id="editor-3d-text"
+                        class="font-3d-inter text-3xl sm:text-4xl extruded-text-orange tracking-tight select-none block transition-all"
+                      >
+                        PrintVerse
+                      </span>
+                    </div>
+
+                    <!-- Monolithic Standalone Connecting Bridge (Solid Baseline Union Bar) -->
+                    <div id="standalone-bridge-bar" class="w-full max-w-[220px] h-2 rounded-full bg-[#ff5500] mx-auto mt-1 shadow-[0_3px_0_#993300,0_6px_12px_rgba(0,0,0,0.4)] transition-all"></div>
+                  </div>
+
+                  <!-- Z-Height Dimension Indicator reacting to Sliders -->
+                  <div class="absolute -left-12 top-1/2 -translate-y-1/2 hidden sm:flex flex-col items-center text-[10px] font-mono text-[#ff5500]">
+                    <span>▲</span>
+                    <span id="editor-z-dimension" class="bg-[#090c14] text-white px-1.5 py-0.5 rounded border border-orange-500/40 shadow">7.5mm</span>
+                    <span>▼</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Bar: Status Toast + BOTÕES DE EXPORTAÇÃO DIRETA (.STL & .3MF) -->
+              <div class="relative z-10 space-y-3">
+                
+                <!-- Status Toast -->
+                <div class="bg-[#161922] text-white rounded-2xl p-3.5 shadow-xl border border-white/10 flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+                      <i data-lucide="check" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                      <div id="editor-status-title" class="text-xs sm:text-sm font-bold text-white">
+                        Peça 3D customizada em tempo real
+                      </div>
+                      <div id="editor-status-desc" class="text-[11px] text-slate-400">
+                        Estrutura calculada com geometria fechada para impressão 3D
+                      </div>
+                    </div>
+                  </div>
+                  <span id="editor-mode-indicator" class="hidden sm:inline-flex px-2 py-0.5 text-[10px] font-mono font-bold bg-orange-500/20 text-[#ff5500] rounded border border-orange-500/30">
+                    Sobre Base (+)
+                  </span>
+                </div>
+
+                <!-- 4. BOTÕES DE EXPORTAÇÃO DIRETA DE DESTAQUE COM DOWNLOAD REAL -->
+                <div class="bg-[#0c0f17] rounded-2xl p-3 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-2xl">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]"></span>
+                    <span class="text-xs font-display font-bold text-white">Gerar e Baixar Arquivo 3D:</span>
+                  </div>
+
+                  <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                    <!-- Botão Baixar .STL -->
+                    <button
+                      type="button"
+                      id="btn-download-stl"
+                      onclick="triggerExportToast('.STL')"
+                      class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-white/10 hover:bg-[#ff5500] text-white text-xs font-display font-bold transition-all flex items-center justify-center gap-2 border border-white/10 shadow group cursor-pointer"
+                    >
+                      <i data-lucide="download" class="w-4 h-4 text-orange-400 group-hover:text-white transition-colors"></i>
+                      <span>Baixar .STL</span>
+                    </button>
+
+                    <!-- Botão Baixar .3MF -->
+                    <button
+                      type="button"
+                      id="btn-download-3mf"
+                      onclick="triggerExportToast('.3MF')"
+                      class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#ff5500] to-orange-600 hover:from-orange-500 hover:to-orange-600 text-white text-xs font-display font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-orange-500/30 group cursor-pointer"
+                    >
+                      <i data-lucide="layers" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                      <span>Baixar .3MF (Color)</span>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. SEÇÃO DE RECURSOS (GRID / CARDS)
+       ======================================================================== -->
+  <section id="recursos" class="py-24 relative bg-[#040508]/80 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Heading -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="max-w-2xl space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-[#00f0ff] text-xs font-bold uppercase tracking-widest">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>Recursos Completos do Print Verse</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">
+            Peças prontas, personalizadas e <span class="text-gradient-tech">sem complicação</span>
+          </h2>
+        </div>
+        <p class="text-slate-400 max-w-md text-sm sm:text-base">
+          Projetado tanto para hobistas que querem peças perfeitas quanto para farms de impressão 3D que buscam volume e faturamento.
+        </p>
+      </div>
+
+      <!-- Grid de 5 Cards (4 Recursos Principais + 1 Bônus Extra) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+        <!-- Card 1: Peças com logos (a partir de imagem) -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-[#ff5500] mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="image" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-white mb-3">
+              Peças com logos <span class="text-sm font-normal text-orange-400 block sm:inline">(a partir de imagem)</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm mb-6">
+              Envie qualquer logotipo, vetor ou imagem da internet e receba o relevo tridimensional automático com bordas chanfradas, profundidade ajustável e base sólida perfeitamente aderente.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <span>Vetorização Inteligente</span>
+            <span class="text-emerald-400 font-semibold font-mono">.STL / .3MF</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Chaveiros personalizados (com sua imagem) -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-[#00f0ff] mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="key" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-white mb-3">
+              Chaveiros personalizados <span class="text-sm font-normal text-cyan-400 block sm:inline">(com sua imagem)</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm mb-6">
+              Crie chaveiros duráveis com furação reforçada para argola, espessura calibrada anti-quebra e opções prontas para fatiamento multicolorido (Bambu AMS, CFS, Prusa MMU).
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <span>Furação Anti-Quebra</span>
+            <span class="text-cyan-400 font-semibold font-mono">15 min de impressão</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Letras-caixa para LED (fonte e imagem) -->
+        <div class="glass-card glass-card-purple rounded-3xl p-8 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="box" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-white mb-3">
+              Letras-caixa para LED <span class="text-sm font-normal text-purple-300 block sm:inline">(fonte e imagem)</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm mb-6">
+              Geração automática da carcaça vazada com canal de passagem de fita LED (5V/12V), furo para fiação traseiro e tampa difusora frontal com tolerância exata de encaixe por pressão.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <span>Tolerância: 0.15mm</span>
+            <span class="text-purple-300 font-semibold font-mono">Com Difusor</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Letreiros prontos (corte e gravação) -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="presentation" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-white mb-3">
+              Letreiros prontos <span class="text-sm font-normal text-amber-400 block sm:inline">(corte e gravação)</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm mb-6">
+              Placas autoportantes para mesas de escritório, balcões de recepção e vitrines. Suporte de base embutido para imprimir sem suportes descartáveis.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <span>Base Autoportante</span>
+            <span class="text-amber-400 font-semibold font-mono">Zero Suportes</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Bônus Extra - Gerenciador de Arquivos (Em Destaque de 2 Colunas no Desktop) -->
+        <div class="lg:col-span-2 rounded-3xl p-8 bg-gradient-to-br from-[#121024] via-[#101424] to-[#0a1518] border-2 border-purple-500/50 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-purple-500/15 blur-3xl pointer-events-none"></div>
+          
+          <div class="space-y-3 max-w-xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-mono font-bold uppercase tracking-wider">
+              <i data-lucide="gift" class="w-3.5 h-3.5"></i>
+              <span>BÔNUS EXTRA INCLUSO</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-white">
+              Gerenciador de Arquivos para Produção
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Crie pastas, organize seus arquivos por cliente ou tipo de produto e gerencie suas versões em <strong class="text-orange-400">.STL</strong> e <strong class="text-cyan-400">.3MF</strong> direto na nuvem. Uma ferramenta completa para quem quer organizar sua produção em série e nunca mais perder arquivos de clientes.
+            </p>
+          </div>
+
+          <div class="bg-[#0b0e17] rounded-2xl p-4 border border-white/10 shrink-0 w-full sm:w-64 space-y-2.5 font-mono text-xs">
+            <div class="flex items-center gap-2 text-purple-300 font-bold border-b border-white/10 pb-2">
+              <i data-lucide="folder" class="w-4 h-4"></i>
+              <span>/Farm_Producao/</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="folder-check" class="w-3.5 h-3.5 text-emerald-400"></i> Pedidos_Semana</span>
+              <span class="text-[10px] text-slate-500">14 arq</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="folder-check" class="w-3.5 h-3.5 text-cyan-400"></i> Tags_Empresariais</span>
+              <span class="text-[10px] text-slate-500">32 arq</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="folder-check" class="w-3.5 h-3.5 text-orange-400"></i> Letreiros_LED</span>
+              <span class="text-[10px] text-slate-500">08 arq</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. COMO FUNCIONA EM 3 PASSOS
+       ======================================================================== -->
+  <section id="como-funciona" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-[#ff5500] text-xs font-bold uppercase tracking-widest">
+          <i data-lucide="workflow" class="w-3.5 h-3.5"></i>
+          <span>Fluxo Simplificado</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">
+          Do conceito digital à peça na mão em <span class="text-gradient-orange">3 passos</span>
+        </h2>
+        <p class="text-slate-400 text-lg">
+          Zero complicação com softwares CAD pesados. Você foca no design e nós cuidamos da matemática 3D.
+        </p>
+      </div>
+
+      <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="hidden md:block absolute top-16 left-[16%] right-[16%] h-[2px] bg-gradient-to-r from-[#ff5500] via-[#00f0ff] to-[#10b981] opacity-35 -z-10"></div>
+
+        <!-- Passo 1 -->
+        <div class="glass-card rounded-3xl p-8 relative group">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#ff5500] to-orange-700 flex items-center justify-center text-white shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
+              <i data-lucide="upload-cloud" class="w-7 h-7"></i>
+            </div>
+            <span class="font-display text-4xl font-extrabold text-white/10 group-hover:text-[#ff5500]/30 transition-colors">01</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white mb-3">1. Inspire-se na Web</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Cole um link, faça upload de uma imagem da internet, logo ou digite os nomes desejados. O motor Print Verse interpreta as linhas e profundidades.
+          </p>
+          <div class="p-3 rounded-xl bg-[#090b10] border border-white/5 text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-orange-400"></i>
+            <span>Compatível com PNG, JPG, WebP e SVG</span>
+          </div>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="glass-card glass-card-cyan rounded-3xl p-8 relative group">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00f0ff] to-cyan-700 flex items-center justify-center text-slate-950 shadow-lg shadow-cyan-500/30 group-hover:scale-110 transition-transform">
+              <i data-lucide="sliders" class="w-7 h-7"></i>
+            </div>
+            <span class="font-display text-4xl font-extrabold text-white/10 group-hover:text-cyan-400/30 transition-colors">02</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white mb-3">2. Ajustes Guiados</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Defina altura de relevo, adicione furação de chaveiro, crie tampa de LED ou gere suporte de mesa através de sliders intuitivos com medidas em milímetros.
+          </p>
+          <div class="p-3 rounded-xl bg-[#090b10] border border-white/5 text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-cyan-400"></i>
+            <span>Sem necessidade de conhecimento em CAD</span>
+          </div>
+        </div>
+
+        <!-- Passo 3 -->
+        <div class="glass-card rounded-3xl p-8 relative group">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+              <i data-lucide="printer" class="w-7 h-7"></i>
+            </div>
+            <span class="font-display text-4xl font-extrabold text-white/10 group-hover:text-emerald-400/30 transition-colors">03</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white mb-3">3. Exporte e Imprima</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Baixe diretamente os arquivos nos formatos <strong class="text-white">.STL</strong> ou <strong class="text-white">.3MF</strong> (multicolor) prontos para abrir no Bambu Studio, OrcaSlicer, PrusaSlicer ou Cura.
+          </p>
+          <div class="p-3 rounded-xl bg-[#090b10] border border-white/5 text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+            <span>Licença comercial liberada para venda física</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. GALERIA DE PROJETOS REAIS
+       ======================================================================== -->
+  <section id="galeria" class="py-24 relative bg-[#050609]/80 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/25 text-purple-300 text-xs font-bold uppercase tracking-widest">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Exemplos Prontos</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">
+          Veja o que os membros do <span class="text-gradient-orange">Print Verse</span> estão criando
+        </h2>
+        <p class="text-slate-400 text-base sm:text-lg">
+          Do upload de imagem ao fatiamento multicolorido em poucos segundos.
+        </p>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <button type="button" data-filter="all" class="gallery-filter-btn active px-4 py-2 rounded-xl text-xs font-display font-bold bg-[#ff5500] text-white transition-all">
+          Todos os Projetos
+        </button>
+        <button type="button" data-filter="chaveiros" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-display font-bold bg-white/5 text-slate-300 hover:bg-white/10 transition-all">
+          Chaveiros & Logos
+        </button>
+        <button type="button" data-filter="led" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-display font-bold bg-white/5 text-slate-300 hover:bg-white/10 transition-all">
+          Letras-Caixa LED
+        </button>
+        <button type="button" data-filter="letreiros" class="gallery-filter-btn px-4 py-2 rounded-xl text-xs font-display font-bold bg-white/5 text-slate-300 hover:bg-white/10 transition-all">
+          Letreiros de Mesa
+        </button>
+      </div>
+
+      <!-- Gallery Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="gallery-grid">
+
+        <!-- Card 1 -->
+        <div class="gallery-item glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="chaveiros">
+          <div>
+            <div class="p-5 bg-[#0a0c14] border-b border-white/10">
+              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-3">
+                <span class="text-orange-400 font-bold">TAG #01</span>
+                <span>.3MF Multicolor</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="rounded-xl bg-[#131722] p-3 border border-white/10 h-24 flex flex-col items-center justify-center">
+                  <span class="font-bold text-white text-xs">Logo PNG</span>
+                  <span class="text-[9px] text-slate-500">2D Web</span>
+                </div>
+                <div class="rounded-xl bg-[#131722] p-3 border border-cyan-500/30 h-24 flex flex-col items-center justify-center text-cyan-300">
+                  <span class="font-bold text-xs">Relevo 3D</span>
+                  <span class="text-[9px] text-slate-400">Malha .STL</span>
+                </div>
+                <div class="rounded-xl bg-gradient-to-b from-orange-500/20 to-[#131722] p-3 border border-orange-500/40 h-24 flex flex-col items-center justify-center text-orange-300">
+                  <span class="font-bold text-xs">Impresso</span>
+                  <span class="text-[9px] text-emerald-400">Pronto</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-white mb-2">Chaveiros com Logotipo de Clientes</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Produza lotes corporativos de 50 a 500 peças em tempo recorde sem ter que desenhar nenhum vetor do zero.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Fatiador: <strong>Bambu / Orca</strong></span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold">Licença Comercial</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="gallery-item glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="led">
+          <div>
+            <div class="p-5 bg-[#0a0c14] border-b border-white/10">
+              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-3">
+                <span class="text-purple-400 font-bold">LUMINÁRIA #02</span>
+                <span>.STL + Tampa Difusora</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="rounded-xl bg-[#131722] p-3 border border-white/10 h-24 flex flex-col items-center justify-center">
+                  <span class="font-bold text-white text-xs">Fonte Gamer</span>
+                  <span class="text-[9px] text-slate-500">Texto 2D</span>
+                </div>
+                <div class="rounded-xl bg-[#131722] p-3 border border-purple-500/30 h-24 flex flex-col items-center justify-center text-purple-300">
+                  <span class="font-bold text-xs">Caixa LED</span>
+                  <span class="text-[9px] text-slate-400">Furo p/ Fio</span>
+                </div>
+                <div class="rounded-xl bg-gradient-to-b from-purple-500/25 to-[#131722] p-3 border border-purple-500/40 h-24 flex flex-col items-center justify-center text-purple-200">
+                  <span class="font-bold text-xs">Luminária</span>
+                  <span class="text-[9px] text-emerald-400">12V RGB</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-white mb-2">Letras-Caixa para LED Neon</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Carcaça estrutural com canal para fita LED e difusor acrílico ou impresso em PLA Translúcido com encaixe sem cola.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Offset: <strong>0.15mm</strong></span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold">Licença Comercial</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="gallery-item glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="letreiros">
+          <div>
+            <div class="p-5 bg-[#0a0c14] border-b border-white/10">
+              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-3">
+                <span class="text-cyan-400 font-bold">DISPLAY #03</span>
+                <span>.STL Autoportante</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="rounded-xl bg-[#131722] p-3 border border-white/10 h-24 flex flex-col items-center justify-center">
+                  <span class="font-bold text-white text-xs">Marca Vetor</span>
+                  <span class="text-[9px] text-slate-500">Logo Arte</span>
+                </div>
+                <div class="rounded-xl bg-[#131722] p-3 border border-cyan-500/30 h-24 flex flex-col items-center justify-center text-cyan-300">
+                  <span class="font-bold text-xs">Letreiro</span>
+                  <span class="text-[9px] text-slate-400">Base Apoio</span>
+                </div>
+                <div class="rounded-xl bg-gradient-to-b from-cyan-500/20 to-[#131722] p-3 border border-cyan-500/40 h-24 flex flex-col items-center justify-center text-cyan-200">
+                  <span class="font-bold text-xs">Display Mesa</span>
+                  <span class="text-[9px] text-emerald-400">Estável</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-white mb-2">Letreiros de Mesa com Gravação</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Placas de consultórios, comércios e lojas prontas para fatiamento com base pesada e sem tombamento.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Impressão: <strong>Sem Suporte</strong></span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold">Licença Comercial</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. SEÇÃO DE PLANOS / ASSINATURA (PRICING)
+       ======================================================================== -->
+  <section id="planos" class="py-24 relative bg-[#040508] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-[#ff5500] text-xs font-bold uppercase tracking-widest">
+          <i data-lucide="crown" class="w-3.5 h-3.5"></i>
+          <span>Planos Print Verse</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">
+          Acesso completo às ferramentas com <span class="text-gradient-orange">licença comercial</span>
+        </h2>
+        <p class="text-slate-400 text-lg">
+          Comece agora mesmo a faturar vendendo peças impressas com qualidade industrial.
+        </p>
+
+        <!-- Billing Switcher -->
+        <div class="pt-3 flex items-center justify-center gap-4">
+          <span id="label-mensal" class="text-sm font-semibold text-slate-400">Plano Mensal</span>
+          <button
+            id="billing-toggle"
+            type="button"
+            aria-label="Alternar entre plano mensal e anual"
+            class="w-16 h-8 rounded-full bg-[#ff5500] p-1 flex items-center justify-end transition-all cursor-pointer"
+          >
+            <span class="w-6 h-6 rounded-full bg-white shadow-md transition-transform"></span>
+          </button>
+          <span id="label-anual" class="text-sm font-bold text-white flex items-center gap-2">
+            Plano Anual
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              ECONOMIZE 40%
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Pricing Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+
+        <!-- PLANO MAKER -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between border border-white/10">
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold text-white">Print Verse Creator</h3>
+                <p class="text-sm text-slate-400">Para criadores e entusiastas individuais</p>
+              </div>
+              <span class="px-3 py-1 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
+                Iniciante
+              </span>
+            </div>
+
+            <div class="my-7 pb-7 border-b border-white/10">
+              <div class="flex items-baseline gap-2">
+                <span class="text-sm font-semibold text-slate-400">R$</span>
+                <span id="price-starter" class="font-display text-5xl font-extrabold text-white">49</span>
+                <span class="text-lg font-bold text-slate-400">,90 /mês</span>
+              </div>
+              <p id="desc-starter" class="text-xs text-slate-400 mt-2">
+                Cancele quando quiser • Acesso imediato
+              </p>
+            </div>
+
+            <ul class="space-y-4 text-sm text-slate-200 mb-8">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span>Acesso total ao <strong>Editor Online</strong> (Chaveiros, Nomes e Letreiros)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span>Exportações ilimitadas nos formatos <strong>.STL</strong> e <strong>.3MF</strong></span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Licença comercial incluída</strong> para vender peças físicas</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span>Gerenciador de arquivos básico na nuvem</span>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" onclick="openCheckoutModal('Print Verse Creator')" class="w-full py-4 rounded-2xl font-display font-bold text-base text-white btn-secondary-glass hover:border-[#ff5500] flex items-center justify-center gap-2">
+            <span>Assinar Plano Creator</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- PLANO PRO (HIGHLIGHTED) -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between border-2 border-[#ff5500] relative shadow-[0_0_50px_rgba(255,85,0,0.18)]">
+          <div class="absolute -top-4 right-6 px-4 py-1 rounded-full bg-gradient-to-r from-[#ff5500] to-amber-500 text-white font-display font-extrabold text-xs uppercase tracking-wider shadow-lg">
+            🔥 Mais Escolhido • Acesso Total
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold text-white">Print Verse PRO</h3>
+                <p class="text-sm text-orange-200/80">Para criadores e farms que buscam escala e lucro</p>
+              </div>
+              <span class="px-3 py-1 rounded-xl bg-orange-500/20 border border-orange-500/40 text-xs font-mono text-[#ff5500] font-bold">
+                PRO
+              </span>
+            </div>
+
+            <div class="my-7 pb-7 border-b border-white/10">
+              <div class="flex items-baseline gap-2">
+                <span class="text-sm font-semibold text-slate-400">12x de R$</span>
+                <span id="price-pro" class="font-display text-5xl font-extrabold text-[#ff5500]">29</span>
+                <span class="text-lg font-bold text-slate-300">,90 /mês</span>
+              </div>
+              <p id="desc-pro" class="text-xs text-emerald-400 font-medium mt-2">
+                Economia de R$ 240/ano • Ou R$ 358,80 à vista no anual
+              </p>
+            </div>
+
+            <ul class="space-y-4 text-sm text-slate-100 mb-8">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#ff5500] shrink-0 mt-0.5"></i>
+                <span><strong>Todas as 6 Ferramentas Guiadas</strong> (incluindo Letras-Caixa LED e Contorno de Logos)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#ff5500] shrink-0 mt-0.5"></i>
+                <span><strong class="text-purple-300">BÔNUS EXTRA:</strong> Gerenciador de Arquivos com pastas ilimitadas para organizar sua produção</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#ff5500] shrink-0 mt-0.5"></i>
+                <span>Exportação em lote de arquivos <strong>.STL</strong> e <strong>.3MF Multicolor</strong></span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#ff5500] shrink-0 mt-0.5"></i>
+                <span><strong>Licença Comercial Completa</strong> para produção em série e vendas</span>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" onclick="openCheckoutModal('Print Verse PRO')" class="w-full py-4 rounded-2xl font-display font-bold text-base text-white btn-primary-orange flex items-center justify-center gap-2">
+            <span>Assinar Print Verse PRO</span>
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Guarantee Strip -->
+      <div class="mt-12 max-w-3xl mx-auto glass-card rounded-2xl p-5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-white text-base">Garantia Incondicional de 7 Dias</div>
+            <p class="text-xs sm:text-sm text-slate-400">
+              Acesse as ferramentas, exporte seus arquivos .STL e .3MF e, se não acelerar seu fluxo de trabalho, devolvemos 100% do valor.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. RODAPÉ (FOOTER)
+       ======================================================================== -->
+  <footer class="bg-[#030406] border-t border-white/10 pt-16 pb-12 text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Brand Column -->
+        <div class="lg:col-span-2 space-y-4">
+          <a href="#inicio" class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ff5500] to-[#00f0ff] p-[1.5px] flex items-center justify-center">
+              <div class="w-full h-full bg-[#08090e] rounded-[9px] flex items-center justify-center">
+                <i data-lucide="box" class="w-5 h-5 text-[#ff5500]"></i>
+              </div>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display font-extrabold text-2xl text-white">Print</span>
+              <span class="font-display font-extrabold text-2xl text-[#ff5500]">Verse</span>
+            </div>
+          </a>
+          <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+            Modele sem saber modelar. Escolha, personalize e comece a imprimir. Ferramentas guiadas para entusiastas e farms de impressão 3D com arquivos <strong class="text-slate-200">.STL</strong> e <strong class="text-slate-200">.3MF</strong>.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#inicio" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#ff5500] hover:text-white border border-white/10 flex items-center justify-center transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#inicio" aria-label="YouTube" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#ff5500] hover:text-white border border-white/10 flex items-center justify-center transition-colors">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+            <a href="#inicio" aria-label="MessageCircle" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#ff5500] hover:text-white border border-white/10 flex items-center justify-center transition-colors">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links: Plataforma -->
+        <div class="space-y-3">
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Ferramentas</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#editor" class="hover:text-white transition-colors">Aplicar Imagem</a></li>
+            <li><a href="#editor" class="hover:text-white transition-colors">Chaveiros Personalizados</a></li>
+            <li><a href="#editor" class="hover:text-white transition-colors">Personalizar Nome</a></li>
+            <li><a href="#editor" class="hover:text-white transition-colors">Letras-Caixa LED</a></li>
+            <li><a href="#editor" class="hover:text-white transition-colors">Letreiros de Mesa</a></li>
+          </ul>
+        </div>
+
+        <!-- Links: Fatiadores -->
+        <div class="space-y-3">
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Fatiadores Suportados</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ff5500]"></span> Bambu Studio</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#00f0ff]"></span> OrcaSlicer</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> PrusaSlicer</li>
+            <li>UltiMaker Cura</li>
+            <li>Creality Print</li>
+          </ul>
+        </div>
+
+        <!-- Links: Avisos Legais -->
+        <div class="space-y-3">
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Avisos Legais</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#planos" class="hover:text-white transition-colors">Termos de Uso</a></li>
+            <li><a href="#planos" class="hover:text-white transition-colors">Licença Comercial 3D</a></li>
+            <li><a href="#planos" class="hover:text-white transition-colors">Política de Privacidade</a></li>
+            <li><a href="#planos" class="hover:text-white transition-colors">Suporte ao Criador</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div>
+          © 2026 <strong class="text-slate-300">Print Verse</strong>. Todos os direitos reservados.
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300 font-mono">STL NATIVO</span>
+          <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-cyan-400 font-mono">3MF MULTICOLOR</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL DE DEMONSTRAÇÃO / CHECKOUT
+       ======================================================================== -->
+  <div id="demo-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="glass-panel rounded-3xl max-w-xl w-full p-6 sm:p-8 border border-white/15 relative shadow-2xl">
+      <button id="close-modal-btn" type="button" aria-label="Fechar modal" class="absolute top-5 right-5 w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-300">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/15 text-[#ff5500] text-xs font-bold mb-4">
+        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+        <span id="modal-badge">Demonstração Print Verse</span>
+      </div>
+
+      <h3 id="modal-title" class="font-display text-2xl sm:text-3xl font-extrabold text-white mb-2">
+        Crie seu primeiro modelo 3D em segundos
+      </h3>
+      <p id="modal-subtitle" class="text-sm text-slate-300 mb-6">
+        Experimente o <strong>Editor Online</strong> ou libere o acesso completo ao clube com exportação ilimitada em <strong>.STL</strong> e <strong>.3MF</strong> e licença comercial.
+      </p>
+
+      <div class="rounded-2xl bg-[#090b12] border border-white/10 p-4 mb-6 space-y-3">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-slate-400">Formatos gerados:</span>
+          <span class="font-mono font-bold text-emerald-400">.STL (Universal) + .3MF (Multicolor)</span>
+        </div>
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-slate-400">Licença inclusa:</span>
+          <span class="font-semibold text-white">Comercial para vendas de peças físicas</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="#editor" id="modal-go-editor" class="flex-1 py-3.5 rounded-xl font-display font-bold text-sm text-center text-white btn-secondary-glass">
+          Testar Editor na Página
+        </a>
+        <a href="#planos" id="modal-go-plans" class="flex-1 py-3.5 rounded-xl font-display font-bold text-sm text-center text-white btn-primary-orange">
+          Acessar Print Verse
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de Notificação de Exportação -->
+  <div id="export-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 glass-panel rounded-2xl p-4 border border-emerald-500/40 flex items-center gap-3.5 shadow-2xl">
+    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
+      <i data-lucide="download-cloud" class="w-5 h-5"></i>
+    </div>
+    <div>
+      <div id="toast-title" class="font-display font-bold text-sm text-white">Arquivo gerado com sucesso!</div>
+      <div class="text-xs text-slate-300">Malha verificada (100% Manifold) pronta para seu fatiador.</div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zapach Club | Crie e Modele para Impressão 3D Sem Saber Modelar</title>
+  <meta name="description" content="Transforme referências da web em modelos 3D prontos para fatiamento em minutos. Ferramentas inteligentes, biblioteca aceleradora e arquivos 100% compatíveis com .STL e .3MF.">
+  
+  <!-- Fontes Google: Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Three.js para o Viewport 3D Interativo -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <!-- Efeitos de Luz Ambiente & Grid Tech -->
+  <div class="tech-grid-bg"></div>
+  <div class="ambient-glow glow-cyan"></div>
+  <div class="ambient-glow glow-violet"></div>
+  <div class="ambient-glow glow-amber"></div>
+
+  <!-- ========================================================================
+       1. HEADER / NAVBAR
+       ======================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#inicio" class="brand-logo" aria-label="Zapach Club Página Inicial">
+        <div class="logo-symbol">
+          <svg viewBox="0 0 28 28" width="28" height="28" fill="none">
+            <polygon points="14,2 26,9 26,21 14,27 2,21 2,9" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M14,2 L14,14 L26,9" stroke="url(#logo-grad)" stroke-width="2"/>
+            <path d="M14,14 L2,9" stroke="url(#logo-grad)" stroke-width="2"/>
+            <path d="M14,14 L14,27" stroke="url(#logo-grad)" stroke-width="2"/>
+            <circle cx="14" cy="14" r="3.2" fill="#00f2fe"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f2fe"/>
+                <stop offset="60%" stop-color="#8b5cf6"/>
+                <stop offset="100%" stop-color="#f59e0b"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ZAPACH <span class="gradient-text-cyan">CLUB</span></span>
+          <span class="brand-tag">3D CREATOR PLATFORM</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="nav-links">
+        <a href="#inicio" class="nav-link active">Início</a>
+        <a href="#ferramentas" class="nav-link">Ferramentas</a>
+        <a href="#como-funciona" class="nav-link">Como Funciona</a>
+        <a href="#galeria" class="nav-link">Galeria de Projetos</a>
+        <a href="#planos" class="nav-link">Planos</a>
+        <a href="#faq" class="nav-link">Dúvidas</a>
+      </nav>
+
+      <!-- Ações do Header -->
+      <div class="nav-cta-group">
+        <button id="themeModeTrigger" class="icon-chip" title="Simular fatiador" aria-label="Ativar camada do fatiador">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          <span class="chip-label">.STL / .3MF</span>
+        </button>
+        <a href="#planos" class="btn btn-primary-nav">
+          <span>Entrar para o Clube</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Abrir Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dropdown Mobile -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+      <a href="#inicio" class="mob-link">Início</a>
+      <a href="#ferramentas" class="mob-link">Ferramentas</a>
+      <a href="#como-funciona" class="mob-link">Como Funciona</a>
+      <a href="#galeria" class="mob-link">Galeria de Projetos</a>
+      <a href="#planos" class="mob-link">Planos</a>
+      <a href="#faq" class="mob-link">Perguntas Frequentes</a>
+      <a href="#planos" class="btn btn-primary w-full text-center mt-3">Entrar para o Clube</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================================
+         2. HERO SECTION
+         ======================================================================== -->
+    <section class="hero-section" id="inicio">
+      <div class="container hero-container">
+        
+        <div class="hero-content">
+          <!-- Selo Badge -->
+          <div class="hero-badge">
+            <span class="badge-pulsing-dot"></span>
+            <span class="badge-txt">Nova Geração de Criação 3D Descomplicada</span>
+            <span class="badge-format-pill">100% .STL & .3MF</span>
+          </div>
+
+          <!-- Título de Impacto -->
+          <h1 class="hero-headline">
+            Economize, aprenda e crie <span class="gradient-text-hero">sem saber modelar.</span>
+          </h1>
+
+          <!-- Subtítulo -->
+          <p class="hero-subheadline">
+            Transforme imagens da internet em modelos 3D prontos para impressão em minutos. Ferramentas otimizadas, compatíveis com <strong>.STL</strong> e <strong>.3MF</strong>, feitas para agilizar os seus projetos e eliminar a complexidade dos softwares tradicionais.
+          </p>
+
+          <!-- CTAs Duplos -->
+          <div class="hero-cta-wrapper">
+            <a href="#planos" class="btn btn-primary btn-glow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+              <span>Comece Agora</span>
+            </a>
+            
+            <button id="openDemoModalBtn" class="btn btn-glass">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+              </svg>
+              <span>Ver Demonstração</span>
+            </button>
+          </div>
+
+          <!-- Indicadores de Confiança / Métricas -->
+          <div class="hero-trust-bar">
+            <div class="trust-stat">
+              <span class="trust-val">+12.000</span>
+              <span class="trust-desc">Modelos Gerados</span>
+            </div>
+            <div class="trust-line"></div>
+            <div class="trust-stat">
+              <span class="trust-val">0 min</span>
+              <span class="trust-desc">Sem Curva de CAD</span>
+            </div>
+            <div class="trust-line"></div>
+            <div class="trust-stat">
+              <span class="trust-val">100%</span>
+              <span class="trust-desc">Manifold & Sem Erros</span>
+            </div>
+          </div>
+
+          <!-- Softwares & Fatiadores Compatíveis -->
+          <div class="slicers-compatibility">
+            <span class="slicer-intro">Compatível com seus fatiadores favoritos:</span>
+            <div class="slicer-logos">
+              <span class="slicer-tag">Bambu Studio</span>
+              <span class="slicer-tag">OrcaSlicer</span>
+              <span class="slicer-tag">PrusaSlicer</span>
+              <span class="slicer-tag">UltiMaker Cura</span>
+              <span class="slicer-tag">Creality Print</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             MOCKUP VISUAL INTERATIVO: CONVERSÃO DE IMAGEM ➔ 3D VIEWPORT
+             ==================================================================== -->
+        <div class="hero-visual-col">
+          <div class="card-glass hero-mockup-card">
+            
+            <!-- Barra Superior do Mockup -->
+            <div class="mockup-header">
+              <div class="mockup-window-dots">
+                <span class="window-dot red"></span>
+                <span class="window-dot yellow"></span>
+                <span class="window-dot green"></span>
+              </div>
+              <div class="mockup-title-bar">
+                <span class="file-icon-badge">AI-2-MESH</span>
+                <span class="current-file-name">concept_art_robot.png ➔ robot_manifold.3mf</span>
+              </div>
+              <div class="mockup-controls-top">
+                <button id="toggleMeshWireframe" class="btn-micro" title="Alternar Malha/Sólido">Wireframe</button>
+                <button id="toggleSliceLayer" class="btn-micro active" title="Alternar Visualização de Camadas">Camadas</button>
+              </div>
+            </div>
+
+            <!-- Viewport 3D Three.js -->
+            <div class="mockup-viewport-area">
+              <div id="hero3dCanvas" class="three-viewport"></div>
+
+              <!-- Overlay Flutuante: Imagem de Referência da Web -->
+              <div class="floating-source-card" id="floatingSourceCard">
+                <div class="source-header">
+                  <span class="source-pulse"></span>
+                  <span class="source-txt">Imagem Referência da Web</span>
+                </div>
+                <div class="source-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=320&q=80" alt="Imagem conceito 2D de referência">
+                  <div class="source-tag">IA Neural Extractor</div>
+                </div>
+                <div class="source-arrow">➔ Convertido em 3D</div>
+              </div>
+
+              <!-- HUD com Estatísticas Técnicas da Peça -->
+              <div class="viewport-hud-specs">
+                <div class="hud-item">
+                  <span class="hud-label">Triângulos:</span>
+                  <span class="hud-val">84.220</span>
+                </div>
+                <div class="hud-item">
+                  <span class="hud-label">Fechamento:</span>
+                  <span class="hud-val text-cyan">Manifold (Perfeito)</span>
+                </div>
+                <div class="hud-item">
+                  <span class="hud-label">Formatos:</span>
+                  <span class="hud-val text-amber">.STL & .3MF</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rodapé do Mockup com Ações de Fatiamento -->
+            <div class="mockup-footer">
+              <div class="slicer-feedback">
+                <span class="check-icon">✓</span>
+                <span>Malha pronta para fatiar sem necessidade de reparos (Prusa / Bambu ready)</span>
+              </div>
+              <div class="export-preview-btns">
+                <button class="btn-export-badge" id="btnPreviewStl">.STL</button>
+                <button class="btn-export-badge active" id="btnPreview3mf">.3MF (Cores & Specs)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. SEÇÃO: COMO FUNCIONA EM 3 PASSOS
+         ======================================================================== -->
+    <section class="section-padding bg-surface-alt" id="como-funciona">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">FLUXO SIMPLIFICADO</div>
+          <h2 class="section-title">Como funciona em apenas <span class="gradient-text-cyan">3 passos</span></h2>
+          <p class="section-subtitle">
+            Você não precisa de 6 meses estudando softwares de modelagem 3D. Nosso método foca exclusivamente no que funciona para sua impressora.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          
+          <!-- Passo 1 -->
+          <div class="step-card card-glass">
+            <div class="step-num-badge">01</div>
+            <div class="step-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+            <h3 class="step-title">Inspire-se na Web</h3>
+            <p class="step-desc">
+              Viu uma imagem no Pinterest, Midjourney, Google ou rede social? Envie a referência ou foto para a plataforma. O Zapach Club processa os contornos e volumes usando IA especializada em geometria para impressão 3D.
+            </p>
+            <div class="step-feature-list">
+              <span>✦ Upload simples de PNG/JPG/WebP</span>
+              <span>✦ Extração de silhueta e profundidade</span>
+              <span>✦ Reconhecimento de proporção real</span>
+            </div>
+          </div>
+
+          <!-- Passo 2 -->
+          <div class="step-card card-glass active-step">
+            <div class="step-num-badge">02</div>
+            <div class="step-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </div>
+            <h3 class="step-title">Ajustes Rápidos</h3>
+            <p class="step-desc">
+              Use as ferramentas pré-prontas do clube para estruturar a peça: adicione bases estabilizadoras, encaixes macho/fêmea, furos técnicos ou texturas sem precisar desenhar vértices do zero.
+            </p>
+            <div class="step-feature-list">
+              <span>✦ Encaixes e conectores automáticos</span>
+              <span>✦ Otimizador de ângulos sem suporte</span>
+              <span>✦ Ajuste paramétrico de espessura de parede</span>
+            </div>
+          </div>
+
+          <!-- Passo 3 -->
+          <div class="step-card card-glass">
+            <div class="step-num-badge">03</div>
+            <div class="step-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </div>
+            <h3 class="step-title">Exporte e Imprima</h3>
+            <p class="step-desc">
+              Baixe diretamente nos formatos universais <strong>.STL</strong> ou <strong>.3MF</strong>. Abra direto no Bambu Studio, OrcaSlicer, Cura ou PrusaSlicer e mande para a mesa de impressão sem falhas de geometria.
+            </p>
+            <div class="step-feature-list">
+              <span>✦ Malhas 100% Manifold (sem buracos)</span>
+              <span>✦ Metadados de cor e suporte no .3MF</span>
+              <span>✦ Compatível com FDM e Resina SLA</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Banner Interativo de Demonstração Rápida -->
+        <div class="interactive-flow-bar card-glass">
+          <div class="flow-pill-left">
+            <span class="live-dot"></span>
+            <strong>Simulador de Fluxo Express:</strong> Experimente como um conceito 2D vira arquivo .3MF
+          </div>
+          <button id="triggerFlowDemoBtn" class="btn btn-outline-cyan">
+            <span>Testar Conversão ao Vivo</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. SEÇÃO: RECURSOS E BENEFÍCIOS (GRID DE CARDS)
+         ======================================================================== -->
+    <section class="section-padding" id="ferramentas">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">ECOSSISTEMA COMPLETO</div>
+          <h2 class="section-title">Projetado por quem vive a <span class="gradient-text-amber">impressão 3D</span></h2>
+          <p class="section-subtitle">
+            Cada recurso do Zapach Club foi pensado para resolver os maiores gargalos de quem quer produzir peças incríveis sem perder dias na frente do computador.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          
+          <!-- Card 1 -->
+          <div class="feature-card card-glass">
+            <div class="feature-icon-box cyan-glow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Biblioteca Pré-Pronta Aceleradora</h3>
+            <p class="feature-desc">
+              Acesso a centenas de blocos funcionais, roscas universais padronizadas, juntas articuladas, bases de montagem e encaixes testados na prática para acoplar aos seus modelos com um clique.
+            </p>
+            <div class="feature-tag-list">
+              <span class="tag-item">Roscas M3 a M12</span>
+              <span class="tag-item">Snap-fits</span>
+              <span class="tag-item">Articulações Print-in-place</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card card-glass highlight-feature">
+            <div class="feature-badge-corner">SUPER PODER</div>
+            <div class="feature-icon-box violet-glow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Economia Brutal de Tempo</h3>
+            <p class="feature-desc">
+              Esqueça tutoriais de 4 horas no Fusion 360 ou Blender apenas para ajustar uma parede ou criar um suporte. Transforme ideias em arquivos de impressão em menos de 10 minutos.
+            </p>
+            <div class="feature-tag-list">
+              <span class="tag-item">Sem curva de aprendizado</span>
+              <span class="tag-item">-90% de tempo de tela</span>
+              <span class="tag-item">Foco na produção</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card card-glass">
+            <div class="feature-icon-box amber-glow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3 class="feature-title">Foco 100% em Impressão 3D</h3>
+            <p class="feature-desc">
+              Chega de modelos com faces invertidas, paredes finas demais que não imprimem ou buracos que travam o fatiador. Nosso algoritmo gera malhas limpas, seladas e slicer-friendly.
+            </p>
+            <div class="feature-tag-list">
+              <span class="tag-item">Zero faces não-manifold</span>
+              <span class="tag-item">Compatível .STL & .3MF</span>
+              <span class="tag-item">Fatiamento limpo</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="feature-card card-glass">
+            <div class="feature-icon-box cyan-glow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Comunidade & Aprendizado VIP</h3>
+            <p class="feature-desc">
+              Você nunca estará sozinho. Troque ideias com outros criadores, receba feedback sobre suas impressões, acesse masterclasses semanais e dicas exclusivas dos membros experientes.
+            </p>
+            <div class="feature-tag-list">
+              <span class="tag-item">Grupo Exclusivo</span>
+              <span class="tag-item">Aulas ao vivo</span>
+              <span class="tag-item">Dicas de fatiamento</span>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="feature-card card-glass">
+            <div class="feature-icon-box amber-glow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="feature-title">Conversor Inteligente 2D para 3D</h3>
+            <p class="feature-desc">
+              Geração de formas volumétricas inteligentes a partir de esboços rápidos, logos, arte vetorial ou fotografias da internet. A IA calcula a curvatura adequada para a deposição de filamento ou cura de resina.
+            </p>
+            <div class="feature-tag-list">
+              <span class="tag-item">IA com inteligência física</span>
+              <span class="tag-item">Geração de relevo</span>
+              <span class="tag-item">Litofanias e brasões</span>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="feature-card card-glass">
+            <div class="feature-icon-box violet-glow">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Licença Comercial de Venda</h3>
+            <p class="feature-desc">
+              Venda as peças físicas impressas criadas a partir das ferramentas e da biblioteca do clube sem burocracias. Monetize sua impressora com produtos de alta procura no mercado.
+            </p>
+            <div class="feature-tag-list">
+              <span class="tag-item">Venda autorizada</span>
+              <span class="tag-item">Sem royalties</span>
+              <span class="tag-item">Renda com impressão 3D</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. GALERIA DE PROJETOS (FLUXO 2D ➔ MODELO 3D ➔ PEÇA IMPRESSA)
+         ======================================================================== -->
+    <section class="section-padding bg-surface-alt" id="galeria">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">PROJETOS REAIS</div>
+          <h2 class="section-title">Da imagem na internet até a <span class="gradient-text-cyan">mesa da impressora</span></h2>
+          <p class="section-subtitle">
+            Veja como membros do clube transformam ideias simples da web em peças físicas prontas com alta precisão e acabamento impecável.
+          </p>
+        </div>
+
+        <!-- Filtros da Galeria -->
+        <div class="gallery-filter-tabs">
+          <button class="gal-tab active" data-filter="all">Todos os Projetos</button>
+          <button class="gal-tab" data-filter="utilitario">Utilidades & Suportes</button>
+          <button class="gal-tab" data-filter="colecionavel">Colecionáveis & Decor</button>
+          <button class="gal-tab" data-filter="tecnico">Peças Técnicas</button>
+        </div>
+
+        <!-- Grid de Cards do Fluxo -->
+        <div class="gallery-cards-grid" id="galleryCardsGrid">
+          
+          <!-- Projeto 1: Suporte Ergonômico de Fone -->
+          <div class="gallery-flow-card card-glass" data-category="utilitario">
+            <div class="flow-header">
+              <span class="flow-title">Suporte Minimalista para Headset</span>
+              <span class="flow-format-badge">.3MF / .STL</span>
+            </div>
+
+            <div class="flow-stages-row">
+              <!-- Estágio 1: Imagem de Referência -->
+              <div class="stage-col">
+                <div class="stage-tag">1. Referência Web</div>
+                <div class="stage-img-box">
+                  <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=400&q=80" alt="Imagem de headset de referência">
+                </div>
+                <span class="stage-caption">Conceito encontrado no Pinterest</span>
+              </div>
+
+              <div class="stage-divider-arrow">➔</div>
+
+              <!-- Estágio 2: Modelo 3D Gerado -->
+              <div class="stage-col">
+                <div class="stage-tag">2. Modelo 3D Pronto</div>
+                <div class="stage-img-box mesh-bg">
+                  <div class="wireframe-simulated-view">
+                    <svg viewBox="0 0 100 100" class="wire-svg">
+                      <polygon points="50,15 85,35 85,75 50,95 15,75 15,35" stroke="#00f2fe" fill="none" stroke-width="2"/>
+                      <line x1="50" y1="15" x2="50" y2="95" stroke="#00f2fe" stroke-width="1.2" stroke-dasharray="3,3"/>
+                      <line x1="15" y1="35" x2="85" y2="75" stroke="#8b5cf6" stroke-width="1.2"/>
+                      <line x1="85" y1="35" x2="15" y2="75" stroke="#8b5cf6" stroke-width="1.2"/>
+                    </svg>
+                    <span class="mesh-label">Auto-Manifold</span>
+                  </div>
+                </div>
+                <span class="stage-caption">Gerado em 3 min no clube</span>
+              </div>
+
+              <div class="stage-divider-arrow">➔</div>
+
+              <!-- Estágio 3: Peça Impressa -->
+              <div class="stage-col">
+                <div class="stage-tag success-tag">3. Peça Impressa</div>
+                <div class="stage-img-box">
+                  <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" alt="Peça impressa finalizada">
+                </div>
+                <span class="stage-caption">Impresso em PLA Matte (Bambu Lab)</span>
+              </div>
+            </div>
+
+            <div class="flow-footer-meta">
+              <span><strong>Tempo de Modelagem:</strong> 3 minutos</span>
+              <span><strong>Fatiamento:</strong> 0 suportes necessários</span>
+              <button class="btn-micro-cyan" onclick="openModelInspector('headset-stand')">Inspecionar Modelo</button>
+            </div>
+          </div>
+
+          <!-- Projeto 2: Vaso Paramétrico Geométrico -->
+          <div class="gallery-flow-card card-glass" data-category="colecionavel">
+            <div class="flow-header">
+              <span class="flow-title">Vaso Geométrico Torcido (Vase Mode)</span>
+              <span class="flow-format-badge">.STL / .3MF</span>
+            </div>
+
+            <div class="flow-stages-row">
+              <div class="stage-col">
+                <div class="stage-tag">1. Referência Web</div>
+                <div class="stage-img-box">
+                  <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=400&q=80" alt="Arte abstrata de referência">
+                </div>
+                <span class="stage-caption">Padrão vetorial abstrato</span>
+              </div>
+
+              <div class="stage-divider-arrow">➔</div>
+
+              <div class="stage-col">
+                <div class="stage-tag">2. Modelo 3D Pronto</div>
+                <div class="stage-img-box mesh-bg">
+                  <div class="wireframe-simulated-view">
+                    <svg viewBox="0 0 100 100" class="wire-svg">
+                      <ellipse cx="50" cy="20" rx="35" ry="12" stroke="#00f2fe" fill="none" stroke-width="2"/>
+                      <ellipse cx="50" cy="80" rx="30" ry="10" stroke="#00f2fe" fill="none" stroke-width="2"/>
+                      <path d="M15,20 Q50,50 20,80 M85,20 Q50,50 80,80" stroke="#f59e0b" fill="none" stroke-width="1.8"/>
+                    </svg>
+                    <span class="mesh-label">Espiral Contínua</span>
+                  </div>
+                </div>
+                <span class="stage-caption">Gerador de Vasos com 1 Clique</span>
+              </div>
+
+              <div class="stage-divider-arrow">➔</div>
+
+              <div class="stage-col">
+                <div class="stage-tag success-tag">3. Peça Impressa</div>
+                <div class="stage-img-box">
+                  <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="Vaso impresso translúcido">
+                </div>
+                <span class="stage-caption">Impresso em PETG Translúcido</span>
+              </div>
+            </div>
+
+            <div class="flow-footer-meta">
+              <span><strong>Tempo de Modelagem:</strong> 45 segundos</span>
+              <span><strong>Modo:</strong> Vaso Espiralado (1h 15m)</span>
+              <button class="btn-micro-cyan" onclick="openModelInspector('twisted-vase')">Inspecionar Modelo</button>
+            </div>
+          </div>
+
+          <!-- Projeto 3: Engrenagem e Guia de Fio Técnico -->
+          <div class="gallery-flow-card card-glass" data-category="tecnico">
+            <div class="flow-header">
+              <span class="flow-title">Guia de Filamento Articulado com Rolamento</span>
+              <span class="flow-format-badge">.3MF Multi-peça</span>
+            </div>
+
+            <div class="flow-stages-row">
+              <div class="stage-col">
+                <div class="stage-tag">1. Referência Web</div>
+                <div class="stage-img-box">
+                  <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" alt="Esboço de máquina industrial">
+                </div>
+                <span class="stage-caption">Foto de mecanismo de esteira</span>
+              </div>
+
+              <div class="stage-divider-arrow">➔</div>
+
+              <div class="stage-col">
+                <div class="stage-tag">2. Modelo 3D Pronto</div>
+                <div class="stage-img-box mesh-bg">
+                  <div class="wireframe-simulated-view">
+                    <svg viewBox="0 0 100 100" class="wire-svg">
+                      <circle cx="50" cy="50" r="35" stroke="#8b5cf6" fill="none" stroke-width="2"/>
+                      <circle cx="50" cy="50" r="16" stroke="#00f2fe" fill="none" stroke-width="2"/>
+                      <line x1="50" y1="15" x2="50" y2="85" stroke="#00f2fe" stroke-width="1.5"/>
+                      <line x1="15" y1="50" x2="85" y2="50" stroke="#00f2fe" stroke-width="1.5"/>
+                    </svg>
+                    <span class="mesh-label">Biblioteca Pré-Pronta</span>
+                  </div>
+                </div>
+                <span class="stage-caption">Encaixe M8 com tolerância 0.15mm</span>
+              </div>
+
+              <div class="stage-divider-arrow">➔</div>
+
+              <div class="stage-col">
+                <div class="stage-tag success-tag">3. Peça Impressa</div>
+                <div class="stage-img-box">
+                  <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=400&q=80" alt="Guia técnico montado">
+                </div>
+                <span class="stage-caption">Impresso em ABS para alta durabilidade</span>
+              </div>
+            </div>
+
+            <div class="flow-footer-meta">
+              <span><strong>Tempo de Modelagem:</strong> 4 minutos</span>
+              <span><strong>Encaixe:</strong> Tolerância perfeita para rolamento 608</span>
+              <button class="btn-micro-cyan" onclick="openModelInspector('bearing-guide')">Inspecionar Modelo</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. SEÇÃO DE PLANOS / ASSINATURA (PRICING)
+         ======================================================================== -->
+    <section class="section-padding" id="planos">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">ACESSO IMEDIATO</div>
+          <h2 class="section-title">Escolha seu plano e comece a <span class="gradient-text-cyan">imprimir hoje</span></h2>
+          <p class="section-subtitle">
+            Cancele a qualquer momento com um clique. Tenha acesso irrestrito às ferramentas, biblioteca de aceleradores e suporte contínuo.
+          </p>
+
+          <!-- Toggle Mensal / Anual -->
+          <div class="pricing-toggle-box">
+            <span class="billing-opt active" id="billingMonthly">Mensal</span>
+            <label class="switch" for="pricingSwitch">
+              <input type="checkbox" id="pricingSwitch" aria-label="Alternar para plano anual com desconto">
+              <span class="slider round"></span>
+            </label>
+            <span class="billing-opt" id="billingAnnual">
+              Anual <span class="discount-badge">ECONOMIZE 30%</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="pricing-cards-grid">
+          
+          <!-- Plano 1: Criador Mensal -->
+          <div class="pricing-card card-glass">
+            <div class="plan-header">
+              <h3 class="plan-name">Plano Criador</h3>
+              <p class="plan-desc">Perfeito para entusiastas e hobbistas que querem agilizar seus projetos semanais.</p>
+            </div>
+
+            <div class="plan-price-wrap">
+              <span class="currency">R$</span>
+              <span class="price-value" id="priceStarter">39</span>
+              <span class="price-period" id="periodStarter">/mês</span>
+            </div>
+            <div class="billing-note" id="noteStarter">Cobrado mensalmente • Sem fidelidade</div>
+
+            <ul class="plan-features">
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Exportações Ilimitadas em <strong>.STL</strong> e <strong>.3MF</strong></span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Ferramenta de Conversão Imagem ➔ 3D (Até 50/mês)</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Acesso à Biblioteca Básica de Aceleradores</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Acesso à Comunidade de Membros no Discord</span>
+              </li>
+            </ul>
+
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20assinar%20o%20Plano%20Criador%20do%20Zapach%20Club!" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white w-full">Assinar Plano Criador</a>
+          </div>
+
+          <!-- Plano 2: Club Pro (Destaque Mais Popular) -->
+          <div class="pricing-card card-glass popular-plan">
+            <div class="popular-ribbon">MAIS ESCOLHIDO</div>
+            
+            <div class="plan-header">
+              <h3 class="plan-name">Club Pro Master</h3>
+              <p class="plan-desc">Para quem imprime com frequência e quer máxima velocidade, automações e peças comerciais.</p>
+            </div>
+
+            <div class="plan-price-wrap">
+              <span class="currency">R$</span>
+              <span class="price-value gradient-text-cyan" id="pricePro">67</span>
+              <span class="price-period" id="periodPro">/mês</span>
+            </div>
+            <div class="billing-note" id="notePro">Cobrado mensalmente • Acesso total imediato</div>
+
+            <ul class="plan-features">
+              <li>
+                <svg class="check-svg text-cyan" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span><strong>Conversões de Imagem para 3D Ilimitadas</strong></span>
+              </li>
+              <li>
+                <svg class="check-svg text-cyan" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Exportação completa em <strong>.STL</strong> e <strong>.3MF</strong> com metadados</span>
+              </li>
+              <li>
+                <svg class="check-svg text-cyan" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span><strong>Licença Comercial Completa</strong> para venda de peças impressas</span>
+              </li>
+              <li>
+                <svg class="check-svg text-cyan" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Acesso Completo à Biblioteca VIP com +800 Aceleradores</span>
+              </li>
+              <li>
+                <svg class="check-svg text-cyan" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Suporte Prioritário para Validação de Malha e Fatiamento</span>
+              </li>
+            </ul>
+
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20assinar%20o%20Club%20Pro%20Master%20do%20Zapach%20Club!" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow w-full">Entrar para o Club Pro</a>
+          </div>
+
+          <!-- Plano 3: Studio Anual / Farm -->
+          <div class="pricing-card card-glass">
+            <div class="plan-header">
+              <h3 class="plan-name">Studio & Farms</h3>
+              <p class="plan-desc">Para fazendas de impressão 3D, estúdios de design e empresas de prototipagem ágil.</p>
+            </div>
+
+            <div class="plan-price-wrap">
+              <span class="currency">R$</span>
+              <span class="price-value" id="priceStudio">147</span>
+              <span class="price-period" id="periodStudio">/mês</span>
+            </div>
+            <div class="billing-note" id="noteStudio">Até 5 licenças simultâneas de equipe</div>
+
+            <ul class="plan-features">
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Tudo incluso do Club Pro</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Multi-usuários (Até 5 contas na equipe)</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Acesso à API de Geração Automática de Modelos</span>
+              </li>
+              <li>
+                <svg class="check-svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Consultoria Técnica Mensal 1-on-1 com Engenheiro 3D</span>
+              </li>
+            </ul>
+
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Studio%20do%20Zapach%20Club!" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white w-full">Falar com Consultor</a>
+          </div>
+
+        </div>
+
+        <!-- Garantia Incondicional -->
+        <div class="guarantee-card card-glass text-center">
+          <div class="guarantee-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 12 15 16 10"></polyline>
+            </svg>
+          </div>
+          <div class="guarantee-info">
+            <h4>Garantia Incondicional de 7 Dias</h4>
+            <p>Entre no clube, teste as ferramentas de geração e baixe seus arquivos .STL e .3MF. Se você não economizar horas de trabalho logo na primeira semana, devolvemos 100% do seu dinheiro sem perguntas.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         7. SEÇÃO DE PERGUNTAS FREQUENTES (FAQ INTERATIVO)
+         ======================================================================== -->
+    <section class="section-padding bg-surface-alt" id="faq">
+      <div class="container max-w-800">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">TIRA-DÚVIDAS</div>
+          <h2 class="section-title">Perguntas <span class="gradient-text-cyan">frequentes</span></h2>
+          <p class="section-subtitle">
+            Tudo o que você precisa saber sobre como funciona a plataforma e as ferramentas do Zapach Club.
+          </p>
+        </div>
+
+        <div class="faq-accordion">
+          
+          <div class="faq-item card-glass active">
+            <button class="faq-question">
+              <span>Eu realmente não preciso saber nada de modelagem 3D tradicional?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Exatamente! Essa é a essência do Zapach Club. Em vez de você precisar aprender nós complexos, ferramentas de escultura ou curvas de Bézier em softwares tradicionais, nós fornecemos ferramentas simplificadas e IA inteligente para converter ideias visuais em volumes sólidos e fechados, com ajustes pré-configurados para impressão.</p>
+            </div>
+          </div>
+
+          <div class="faq-item card-glass">
+            <button class="faq-question">
+              <span>Os arquivos são realmente compatíveis com .STL e .3MF?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Sim, 100%! O formato <strong>.STL</strong> é o clássico universal lido por qualquer fatiador do planeta. O formato moderno <strong>.3MF</strong> inclui informações adicionais como dados de cores para impressoras multicolor (ex: Bambu Lab AMS, Anycubic Kobra, Prusa MMU), suportes customizados e orientação de fatiamento otimizada.</p>
+            </div>
+          </div>
+
+          <div class="faq-item card-glass">
+            <button class="faq-question">
+              <span>Funciona tanto para impressoras FDM (filamento) quanto Resina (SLA)?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Sim. Os modelos gerados possuem malhas densas e hermeticamente fechadas (manifold). Em impressoras FDM, você aproveita os encaixes e bases sólidas; em impressoras de resina, os detalhes finos e microporosidades são reproduzidos com máxima fidelidade.</p>
+            </div>
+          </div>
+
+          <div class="faq-item card-glass">
+            <button class="faq-question">
+              <span>Posso vender as peças impressas que eu criar no clube?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Sim! Os assinantes do plano <strong>Club Pro Master</strong> e <strong>Studio</strong> têm licença comercial garantida para imprimir e vender os produtos físicos em lojas físicas, feiras, Mercado Livre, Shopee ou Etsy sem pagar nenhum royalty extra.</p>
+            </div>
+          </div>
+
+          <div class="faq-item card-glass">
+            <button class="faq-question">
+              <span>Como funciona o cancelamento da assinatura?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>O cancelamento é 100% autônomo e sem burocracia. Você pode cancelar quando quiser diretamente no painel de usuário com apenas 1 clique, sem telefonemas ou pegadinhas contratuais.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         8. BANNER CTA FINAL
+         ======================================================================== -->
+    <section class="section-padding cta-final-section">
+      <div class="container">
+        <div class="card-glass cta-final-card text-center">
+          <div class="cta-pulse-badge">JUNTE-SE A MAIS DE 1.800 CRIADORES</div>
+          <h2 class="cta-final-title">Pronto para dar vida aos seus projetos 3D sem complicação?</h2>
+          <p class="cta-final-desc">
+            Pare de perder tempo brigando com softwares de modelagem e comece a imprimir o que você imagina hoje mesmo com arquivos .STL e .3MF prontos.
+          </p>
+          <div class="cta-final-buttons">
+            <a href="#planos" class="btn btn-primary btn-glow">
+              <span>Entrar para o Zapach Club Agora</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Zapach%20Club!" target="_blank" rel="noopener noreferrer" class="btn btn-glass">
+              <span>Tirar Dúvidas via WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       9. RODAPÉ (FOOTER)
+       ======================================================================== -->
+  <footer class="app-footer">
+    <div class="container footer-grid">
+      
+      <!-- Coluna da Marca -->
+      <div class="footer-col brand-col">
+        <a href="#inicio" class="brand-logo footer-logo">
+          <div class="logo-symbol">
+            <svg viewBox="0 0 28 28" width="24" height="24" fill="none">
+              <polygon points="14,2 26,9 26,21 14,27 2,21 2,9" stroke="#00f2fe" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="14" cy="14" r="3.2" fill="#00f2fe"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">ZAPACH <span class="gradient-text-cyan">CLUB</span></span>
+          </div>
+        </a>
+        <p class="footer-description">
+          A plataforma definitiva para criadores e entusiastas de impressão 3D modelarem rápido, sem curva técnica e com arquivos 100% prontos para fatiamento em .STL e .3MF.
+        </p>
+        <div class="footer-social-row">
+          <a href="#" class="social-btn" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+          <a href="#" class="social-btn" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          <a href="#" class="social-btn" aria-label="Discord"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6h0a14.5 14.5 0 0 0-4-1.2 11.6 11.6 0 0 0-.5 1.5 13.4 13.4 0 0 0-3 0 11.6 11.6 0 0 0-.5-1.5A14.5 14.5 0 0 0 6 6a15.8 15.8 0 0 0-3 12c1.7 1.3 3.5 2.1 5.3 2.1.4-.6.8-1.2 1.1-1.9-1.2-.5-2.2-1.3-2.9-2.3.2.1.4.3.7.4a11 11 0 0 0 9.6 0c.3-.1.5-.3.7-.4-.7 1-1.7 1.8-2.9 2.3.3.7.7 1.3 1.1 1.9 1.8 0 3.6-.8 5.3-2.1a15.8 15.8 0 0 0-3-12z"></path><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle></svg></a>
+        </div>
+      </div>
+
+      <!-- Links de Navegação -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Navegação</h4>
+        <ul class="footer-nav-list">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#ferramentas">Ferramentas Pré-Prontas</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#galeria">Galeria de Projetos</a></li>
+          <li><a href="#planos">Planos e Preços</a></li>
+        </ul>
+      </div>
+
+      <!-- Fatiadores & Formatos -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Formatos & Suporte</h4>
+        <ul class="footer-nav-list">
+          <li><a href="#inicio">Exportação .STL Manifold</a></li>
+          <li><a href="#inicio">Exportação .3MF Multi-cor</a></li>
+          <li><a href="#inicio">Perfis para Bambu Studio</a></li>
+          <li><a href="#inicio">Perfis para OrcaSlicer</a></li>
+          <li><a href="#inicio">Configurações para Cura / Prusa</a></li>
+        </ul>
+      </div>
+
+      <!-- Suporte e Contato -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Atendimento</h4>
+        <ul class="footer-contact-info">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>suporte@zapachclub.com</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>WhatsApp da Comunidade</span>
+          </li>
+          <li>
+            <span class="status-indicator-live">
+              <span class="live-dot-green"></span>
+              Plataforma Online & Operando
+            </span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Barra Inferior de Direitos Reservados -->
+    <div class="footer-bottom-bar">
+      <div class="container footer-bottom-flex">
+        <span class="copyright-text">&copy; 2026 Zapach Club. Todos os direitos reservados.</span>
+        <div class="footer-legal-links">
+          <a href="#">Termos de Uso</a>
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Licença Comercial</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       10. MODAL INTERATIVO: DEMONSTRAÇÃO DO FLUXO (VER DEMONSTRAÇÃO)
+       ======================================================================== -->
+  <div class="modal-overlay" id="demoModal" aria-hidden="true">
+    <div class="modal-content card-glass">
+      <button class="modal-close-btn" id="closeDemoModalBtn" aria-label="Fechar Modal">&times;</button>
+      
+      <div class="modal-header">
+        <span class="modal-badge">DEMONSTRAÇÃO INTERATIVA</span>
+        <h3 class="modal-title">Como o Zapach Club gera sua peça 3D</h3>
+        <p class="modal-desc">Selecione uma imagem de referência e veja a simulação do pipeline de malha 3D.</p>
+      </div>
+
+      <div class="demo-interactive-box">
+        <div class="demo-sources-selector">
+          <span class="selector-label">Escolha a referência visual:</span>
+          <div class="sample-pills">
+            <button class="sample-btn active" data-sample="robo">Robô Futurista</button>
+            <button class="sample-btn" data-sample="suporte">Suporte Celular</button>
+            <button class="sample-btn" data-sample="engrenagem">Engrenagem Técnica</button>
+          </div>
+        </div>
+
+        <div class="demo-process-visual">
+          <div class="demo-col-source">
+            <span class="col-lbl">Imagem Referência</span>
+            <div class="demo-preview-img-box">
+              <img id="demoSourceImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=350&q=80" alt="Preview da imagem de referência">
+            </div>
+          </div>
+
+          <div class="demo-pipeline-arrow">
+            <div class="gear-anim">⚙️</div>
+            <span class="pipe-txt">IA + Manifold Engine</span>
+          </div>
+
+          <div class="demo-col-result">
+            <span class="col-lbl">Arquivo Pronto (.STL / .3MF)</span>
+            <div class="demo-result-box">
+              <div class="ready-badge">✓ 100% Slicer Ready</div>
+              <div class="result-details">
+                <span id="demoResultName"><strong>Arquivo:</strong> modelo_otimizado.3mf</span>
+                <span><strong>Camadas:</strong> 0.20mm (Otimizado)</span>
+                <span><strong>Suportes:</strong> Não requer suportes</span>
+                <span><strong>Volume:</strong> 42 cm³</span>
+              </div>
+              <a href="#planos" class="btn btn-primary btn-micro-full" id="demoActionBtn">Entrar no Clube para Baixar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       11. MODAL DE INSPEÇÃO DE MODELO (GALERIA)
+       ======================================================================== -->
+  <div class="modal-overlay" id="inspectorModal" aria-hidden="true">
+    <div class="modal-content card-glass inspector-modal-size">
+      <button class="modal-close-btn" id="closeInspectorBtn" aria-label="Fechar Modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge">DETALHES DO PROJETO</span>
+        <h3 class="modal-title" id="inspectorTitle">Inspeção de Modelo</h3>
+      </div>
+      <div class="inspector-body">
+        <p id="inspectorDescription">Carregando dados técnicos da peça...</p>
+        <div class="inspector-specs-grid" id="inspectorSpecsGrid">
+          <!-- Gerado dinamicamente -->
+        </div>
+      </div>
+      <div class="inspector-footer">
+        <a href="#planos" class="btn btn-primary">Acessar este Modelo no Clube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão Flutuante Rápido para Entrar no Clube -->
+  <a href="#planos" class="floating-quick-cta" id="floatingCta" title="Entrar para o Zapach Club">
+    <span class="floating-pulse"></span>
+    <span class="floating-txt">Entrar no Clube</span>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+  </a>
+
+  <!-- Script Principal -->
+  <script src="script.js"></script>
+</body>
+</html>
+
